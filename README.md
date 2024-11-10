@@ -1,8 +1,4 @@
-# webpack-template
+# to-do-list
 
-Use this basic template for future projects if we intend to use webpack.
+A to-do list app created using HTML, CSS, and JS with JSON features. (Project courtesy of The Odin Project)
 
-current added npm scripts
--npm run dev = npx webpack serve
--npm run build = npx webpack
--npm run deploy = push to github pages
