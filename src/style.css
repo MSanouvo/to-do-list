@@ -1,18 +1,20 @@
 body{
     background-color: lavender;
     display: flex;
-    flex-direction: column;
     margin: 0;
     font-family: 'Courier New', Courier, monospace;
 }
 
 /* nav bar */
-nav{
+#nav-bar{
     background-color: rgb(175, 238, 208);
     padding: 10px;
-    height: 60px;
-    display: flex;
-    align-items: center;
+    height: 100vh;
+    width: 20vw;
+    display: grid;
+    grid-template-rows: 100px 1fr 80px;
+    gap: 10px;
+    border: 1px solid black;
 }
 
 .nav-header{
@@ -20,6 +22,27 @@ nav{
     background: none;
     border: none;
     font-weight: bolder;
+    height: 100px;
+}
+
+#group-list{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0;
+}
+
+.group{
+    font-size: 1.5rem;
+    font-weight: bold;
+    border: 1px solid black;
+    justify-content: left;
+}
+
+#open-modal{
+    height: 50px;
+    font-size: 1.3rem;
 }
 
 /* Content */
