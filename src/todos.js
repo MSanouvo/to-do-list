@@ -1,3 +1,4 @@
+//module for our tasks and task related functions
 class Task{
     constructor(name, dueDate){
         this.name = name
@@ -7,10 +8,7 @@ class Task{
         this.priority = 0
     }
 
-    changeDescription(description){
-        this.description = description
-    }
-
+    //better than just printing true/false
     checkCompletion(){
         if(this.completed === true){
             console.log('Completed!')
@@ -20,42 +18,59 @@ class Task{
         
     }
 }
-
-class Project{
-    constructor(arrayName){
-        this.name = arrayName
-        this.array = []
-    }
-
-    addToArray(task){
-        this.array.push(task)
-    }
-    //mostly used for testing
-    showArray(){
-        let length = this.array.length
-        for(let i=0; i<length; i++){
-            console.log(this.array[i].name)
-            console.log(this.array[i].priority)
-        }
-        
-    }
-}
-
-function isComplete(task){
-    return task.completed = true
-}
-
-function changePriority(task){
+//updates all properties of the task
+function updateTask(task){
+    const changeName = (newName) => task.name = newName
+    const changeDescription = (newDescription) => task.description = newDescription
+    const changeDueDate = (newDueDate) => task.dueDate = newDueDate
+    const isComplete = () => task.completed = true
+    const isIncomplete = () => task.completed = false
     const raisePriority = () => task.priority +=1
     const lowerPriority = () => task.priority -=1
 
-    return {raisePriority, lowerPriority}
+    return {changeName, changeDescription, changeDueDate, isComplete, isIncomplete, raisePriority, lowerPriority}
 }
 
-function rankTasks(array){
+function sortTasks(array){
     //sort in descending order (greatest -> least prio)
-    let rankedPriority = array.sort((a, b) => b.priority - a.priority)
-    console.log(rankedPriority)
+    const rankedPriority = () => {
+        let rankedCopy = [...array]
+        let rankedArray = rankedCopy.sort((a, b) => b.priority - a.priority)
+        console.log(rankedArray)
+    }
+    //sort tasks alphabetically
+    const sortedName = () =>{
+        let namedCopy = [...array]
+        let sortedArray = namedCopy.sort((a, b) => {
+            if(a.name < b.name){
+                return -1
+            }
+            if(a.name > b.name){
+                return 1
+            }
+            return 0
+        })
+        console.log(sortedArray)
+    }
+
+    const byDate = () =>{
+        let dateCopy = [...array]
+        let sortedDate = dateCopy.sort((a,b) =>{
+            //need a consistend date format before we can do logic
+        })
+    }
+    //puts incomplete tasks at the top of the list
+    const sortIncomplete = () =>{
+        let incompleteCopy = [...array]
+        let sortIncomplete = incompleteCopy.sort((a) =>{
+            if(a.completed === false){
+                return -1
+            }
+            return 1
+        })
+        console.log(sortIncomplete)
+    }
+    return{rankedPriority, sortedName, sortIncomplete}
 }
 
-export {Project, Task, isComplete, changePriority, rankTasks}
+export {Task, updateTask, sortTasks}
