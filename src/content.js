@@ -1,6 +1,19 @@
 import { Task } from "./todos";
 
 function contentLoad(){
+    //for preload, call createTaskElements with pre-existing tasks
+    //will need to figure that out later
+
+    const modal = document.querySelector('#task-form')
+    const submit = document.querySelector('#submit')
+    submit.addEventListener('click', ()=>{
+        let newTask = addTask()
+        createTaskElements(newTask)
+        modal.close()
+    })
+}
+
+function createTaskElements(newTask){
     //Content elements
     const content = document.querySelector('#content')
     const taskCard = document.createElement('div')
@@ -10,29 +23,20 @@ function contentLoad(){
     const descriptionBox = document.createElement('div')
     descriptionBox.classList.add('task-description')
 
+    //task elements
+    const infoName = document.createElement('span')
+    infoName.textContent = newTask.name
+    const infoDate = document.createElement('span')
+    infoDate.textContent = newTask.dueDate
+    const infoDescription = document.createElement('span')
+    infoDescription.textContent = newTask.description
 
-
-    const modal = document.querySelector('#task-form')
-    const submit = document.querySelector('#submit')
-    submit.addEventListener('click', ()=>{
-        let newTask = addTask()
-
-        const infoName = document.createElement('span')
-        infoName.textContent = newTask.name
-        const infoDate = document.createElement('span')
-        infoDate.textContent = newTask.dueDate
-        const infoDescription = document.createElement('span')
-        infoDescription.textContent = newTask.description
-
-        taskInfo.appendChild(infoName)
-        taskInfo.appendChild(infoDate)
-        descriptionBox.appendChild(infoDescription)
-        taskCard.appendChild(taskInfo)
-        taskCard.appendChild(descriptionBox)
-        content.appendChild(taskCard)
-
-        modal.close()
-    })
+    taskInfo.appendChild(infoName)
+    taskInfo.appendChild(infoDate)
+    descriptionBox.appendChild(infoDescription)
+    taskCard.appendChild(taskInfo)
+    taskCard.appendChild(descriptionBox)
+    content.appendChild(taskCard)   
 }
 
 function addTask(){
