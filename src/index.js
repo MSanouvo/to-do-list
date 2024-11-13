@@ -2,6 +2,7 @@ import "./style.css"
 import { Task, updateTask, sortTasks } from "./todos"
 import { Project } from "./project"
 import { addGroupToList } from "./navbar-list"
+import { contentLoad } from "./content.js"
 
 const december = new Project('December Projects')
 addGroupToList(december)
@@ -18,6 +19,9 @@ taskForm.addEventListener('click', (e)=>{
         taskForm.close()
     }
 })
+
+
+contentLoad()
 // const content = document.querySelector('#content')
 // const child = document.createElement('span')
 // child.textContent = 'Hello'

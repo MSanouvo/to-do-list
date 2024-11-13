@@ -91,13 +91,14 @@ body{
     grid-template-rows: 50px;
     grid-auto-rows: 200px; /*maybe use a minmax */
     padding: 20px;
+    gap: 10px;
     background-color: white;
     height: auto;
     width: 100%;
     box-shadow: 2px 2px 2px grey;
 }
 
-.todo-card{
+.task-card{
     border: 1px solid red;
     background-color: white;
     display: flex;
@@ -105,11 +106,11 @@ body{
     gap: 10px;
 }
 
-.todo-info:hover{
+.task-info:hover{
     background-color: rgb(214, 214, 214)
 }
 
-.todo-info{
+.task-info{
     border: 1px solid black;
     height: 50px;
     display: flex;
@@ -119,6 +120,6 @@ body{
     padding: 10px;
 }
 
-.todo-description{
+.task-description{
     padding: 10px;
 }

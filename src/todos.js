@@ -1,9 +1,9 @@
 //module for our tasks and task related functions
 class Task{
-    constructor(name, dueDate){
+    constructor(name, dueDate, description){
         this.name = name
         this.dueDate = dueDate
-        this.description = ''
+        this.description = description
         this.completed = false
         this.priority = 0
     }
