@@ -45,6 +45,40 @@ body{
     font-size: 1.3rem;
 }
 
+/* dialog box */
+.input-modal{
+    height: 300px;
+    width: 400px;
+    padding: 20px;
+    display: grid;
+    grid-template-rows: 40px;
+    gap: 10px;
+}
+
+.form-header{
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.form-input{
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 120px 1fr;
+}
+
+.form-input>label{
+    grid-column: 1;
+}
+
+.form-input>input{
+    grid-column: 2;
+    height: 20px;
+}
+
+.form-input>select{
+    height: 30px;
+}
+
 /* Content */
 #content{
     padding: 20px;

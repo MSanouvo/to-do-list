@@ -5,6 +5,19 @@ import { addGroupToList } from "./navbar-list"
 
 const december = new Project('December Projects')
 addGroupToList(december)
+
+const taskForm = document.querySelector('#task-form')
+const modalButton = document.querySelector('#open-modal')
+const body = document.querySelector('#content')
+modalButton.addEventListener('click', ()=>{
+    taskForm.showModal()
+})
+
+// taskForm.addEventListener('click', (e)=>{
+//     if (e.target.id != 'task-form'){
+//         taskForm.close()
+//     }
+// })
 // const content = document.querySelector('#content')
 // const child = document.createElement('span')
 // child.textContent = 'Hello'

@@ -18,12 +18,30 @@
             
         </div>
     </div>
-    <dialog>
-        <div>
-            <form action="">
-                
-            </form>
-        </div>
+    <dialog id="task-form">
+        <form class="input-modal" action="">
+            <span class="form-header">New Task</span>
+            <div class="form-input">
+                <label for="task_name">Task Name:</label>
+                <input type="text" id="task_name" name="task_name">
+            </div>
+            <div class="form-input">
+                <label for="due_date">Due by:</label>
+                <input type="text" id="due_date" name="due_date">
+            </div>
+            <div class="form-input">
+                <label for="task_group">Task Group:</label>
+                <select name="task_group" id="task_group">
+                    <option value="test">test</option>
+                </select>
+            </div>
+            <div class="form-input">
+                <label for="task_description">Description:</label>
+                <textarea rows="5" cols="20" name="task_description" id="task_description"></textarea>
+            </div>
+            
+            <button type="submit">submit</button>
+        </form>
     </dialog>
 </body>
 </html>
