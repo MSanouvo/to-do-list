@@ -80,6 +80,45 @@ body{
 }
 
 /* Content */
-#content{
+#content-container{
     padding: 20px;
+    width: 80vw;
+    display: flex;
+}
+
+#content{
+    display: grid;
+    grid-template-rows: 50px;
+    grid-auto-rows: 200px; /*maybe use a minmax */
+    padding: 20px;
+    background-color: white;
+    height: auto;
+    width: 100%;
+    box-shadow: 2px 2px 2px grey;
+}
+
+.todo-card{
+    border: 1px solid red;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.todo-info:hover{
+    background-color: rgb(214, 214, 214)
+}
+
+.todo-info{
+    border: 1px solid black;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 20px;
+    padding: 10px;
+}
+
+.todo-description{
+    padding: 10px;
 }

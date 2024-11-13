@@ -8,4 +8,8 @@ function addGroupToList(project){
     list.appendChild(newGroup)
 }
 
+function submitNewTask(){
+    //get input variables from form and use them to make a new task object
+}
+
 export{addGroupToList}
