@@ -13,11 +13,11 @@ modalButton.addEventListener('click', ()=>{
     taskForm.showModal()
 })
 
-// taskForm.addEventListener('click', (e)=>{
-//     if (e.target.id != 'task-form'){
-//         taskForm.close()
-//     }
-// })
+taskForm.addEventListener('click', (e)=>{
+    if (e.target === taskForm ){
+        taskForm.close()
+    }
+})
 // const content = document.querySelector('#content')
 // const child = document.createElement('span')
 // child.textContent = 'Hello'
