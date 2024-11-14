@@ -1,9 +1,42 @@
 import { Task } from "./todos";
 
-function contentLoad(){
-    //for preload, call createTaskElements with pre-existing tasks
-    //will need to figure that out later
+function contentLoad(project){
+    //load a given group of tasks
+    loadProject(project)
 
+    //form functionality
+    openForm()
+    submitTask()
+}
+
+function loadProject(project){
+    let tasks = project.array.length
+    const content = document.querySelector('#content')
+    const title = document.createElement('span')
+    title.classList.add('group-header')
+    title.textContent = project.name
+    content.appendChild(title)
+
+    for(let i = 0; i<tasks; i++){
+        createTaskElements(project.array[i])
+    }
+}
+
+function openForm(){
+    const taskForm = document.querySelector('#task-form')
+    const modalButton = document.querySelector('#open-modal')
+    modalButton.addEventListener('click', ()=>{
+        taskForm.showModal()
+    })
+    
+    taskForm.addEventListener('click', (e)=>{
+        if (e.target === taskForm ){
+            taskForm.close()
+        }
+    })
+}
+
+function submitTask(){
     const modal = document.querySelector('#task-form')
     const submit = document.querySelector('#submit')
     submit.addEventListener('click', ()=>{

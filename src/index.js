@@ -7,21 +7,12 @@ import { contentLoad } from "./content.js"
 const december = new Project('December Projects')
 addGroupToList(december)
 
-const taskForm = document.querySelector('#task-form')
-const modalButton = document.querySelector('#open-modal')
-const body = document.querySelector('#content')
-modalButton.addEventListener('click', ()=>{
-    taskForm.showModal()
-})
-
-taskForm.addEventListener('click', (e)=>{
-    if (e.target === taskForm ){
-        taskForm.close()
-    }
-})
-
-
-contentLoad()
+const sleep = new Task('sleep', '11pm', 'eepy')
+const gym = new Task('gym', '7pm', 'gains')
+december.addToArray(sleep)
+december.addToArray(gym)
+december.showArray()
+contentLoad(december)
 // const content = document.querySelector('#content')
 // const child = document.createElement('span')
 // child.textContent = 'Hello'
