@@ -1,17 +1,19 @@
 import "./style.css"
 import { Task, updateTask, sortTasks } from "./todos"
-import { Project } from "./project"
+import { Project, projectList } from "./project"
 import { addGroupToList } from "./navbar-list"
 import { contentLoad } from "./content.js"
 
+const list = projectList()
 const december = new Project('December Projects')
+list.addProjectToArray(december)
+list.showProjects()
 addGroupToList(december)
 
 const sleep = new Task('sleep', '11pm', 'eepy')
 const gym = new Task('gym', '7pm', 'gains')
 december.addToArray(sleep)
 december.addToArray(gym)
-december.showArray()
 contentLoad(december)
 // const content = document.querySelector('#content')
 // const child = document.createElement('span')

@@ -36,16 +36,23 @@ function openForm(){
     })
 }
 
+//creates DOM content using form input
+//need to also add tasks to their selected groups
 function submitTask(){
     const modal = document.querySelector('#task-form')
     const submit = document.querySelector('#submit')
+    
+    const selectOption = document.querySelector('#task_group')
     submit.addEventListener('click', ()=>{
         let newTask = addTask()
         createTaskElements(newTask)
+        //project option
+        console.log(selectOption.value)
         modal.close()
     })
 }
 
+//function used to create DOM elements for content
 function createTaskElements(newTask){
     //Content elements
     const content = document.querySelector('#content')
@@ -72,6 +79,7 @@ function createTaskElements(newTask){
     content.appendChild(taskCard)   
 }
 
+//creates task from form inputs
 function addTask(){
     //form elements
     const taskName = document.querySelector('#task_name')

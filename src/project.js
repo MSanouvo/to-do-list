@@ -19,4 +19,22 @@ class Project{
     }
 }
 
-export{Project}
+function projectList(){
+    const projects = []
+    const addProjectToArray = (project) => projects.push(project)
+
+    const addTasktoProject = (project_name, task) =>{
+        for(let i=0; i<projects.length; i++){
+            if(projects[i].name === project_name){
+                projects[i].addToArray(task)
+            }
+        }
+    }
+    
+    const showProjects = () => console.log(projects)
+
+    return {showProjects, addProjectToArray, addTasktoProject}
+}
+
+
+export{Project, projectList}
