@@ -1,4 +1,7 @@
 import { loadProject } from "./content"
+
+//this module should house any function related to projects(groups of tasks)
+
 class Project{
     constructor(arrayName){
         this.name = arrayName

@@ -1,3 +1,4 @@
+//Module for nav bar elements
 function addGroupToList(project){
     const list = document.querySelector('#group-list')
     const newGroup = document.createElement('li')

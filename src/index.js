@@ -4,17 +4,24 @@ import { Project, projectList } from "./project"
 import { loadNavList } from "./navbar-list"
 import { contentLoad } from "./content.js"
 
-export const list = projectList()
-const december = new Project('December Projects')
-const endOfYear = new Project('End of Year Projects')
+//Main module, should hold important variables and load content w/ other modules
+//may only need to import load functions by the end of writing this program
+
+export const list = projectList() //needed variable ?
+
+const december = new Project('December Projects') //test variable
+const endOfYear = new Project('End of Year Projects') //test variable
 list.addProjectToArray(december)
 list.addProjectToArray(endOfYear)
 
-const sleep = new Task('sleep', '11pm', 'eepy')
-const gym = new Task('gym', '7pm', 'gains')
+const sleep = new Task('sleep', '11pm', 'eepy') //test variable
+const gym = new Task('gym', '7pm', 'gains') //test variable
 december.addToArray(sleep)
 december.addToArray(gym)
 december.showArray()
+
+
+
 //load DOMs content
 contentLoad(december)
 loadNavList(list)

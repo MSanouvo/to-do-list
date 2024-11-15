@@ -11,7 +11,8 @@
             <ul id="group-list">
                 <li class="group">project</li>
             </ul>
-        <button id="open-modal"> New Task </button>
+        <button class="open-modal" id="open-task-modal"> New Task </button>
+        <button class="open-modal" id="open-project-modal"> New Project</button>
     </nav>
     <div id="content-container">
         <div id="content">
@@ -48,7 +49,17 @@
                 <textarea rows="5" cols="20" name="task_description" id="task_description"></textarea>
             </div>
             
-            <button id="submit" type="button">submit</button>
+            <button id="submit_task" type="button">submit</button>
+        </form>
+    </dialog>
+    <dialog id="project-form">
+        <form class="input-modal" action="">
+            <span class="form-header">New Project</span>
+            <div class="form-input">
+                <label for="project_name">Project Name:</label>
+                <input type="text" id="project_name" name="project_name">
+            </div>
+            <button id="submit_project" type="button">submit</button>
         </form>
     </dialog>
 </body>

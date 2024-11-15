@@ -1,12 +1,18 @@
 import { Task } from "./todos";
 import { list } from ".";
+import { Project } from "./project";
+import { loadNavList } from "./navbar-list";
+
+//Module for loading and creating new content
 
 function contentLoad(project){
     //load a given group of tasks
     loadProject(project)
     //form functionality
-    openForm()
+    openTaskForm()
+    openProjectForm()
     submitTask()
+    submitProject()
 }
 
 function loadProject(project){
@@ -29,9 +35,9 @@ function resetContent(content){
     }
 }
 
-function openForm(){
+function openTaskForm(){
     const taskForm = document.querySelector('#task-form')
-    const modalButton = document.querySelector('#open-modal')
+    const modalButton = document.querySelector('#open-task-modal')
     modalButton.addEventListener('click', ()=>{
         taskForm.showModal()
     })
@@ -43,11 +49,26 @@ function openForm(){
     })
 }
 
+function openProjectForm(){
+    const projectForm = document.querySelector('#project-form')
+    const modalButton = document.querySelector('#open-project-modal')
+    modalButton.addEventListener('click', ()=>{
+        projectForm.showModal()
+    })
+
+    projectForm.addEventListener('click', (e)=>{
+        if(e.target === projectForm){
+            projectForm.close()
+        }
+    })
+}
+
+
 //creates DOM content using form input
 //need to also add tasks to their selected groups
 function submitTask(){
     const modal = document.querySelector('#task-form')
-    const submit = document.querySelector('#submit')
+    const submit = document.querySelector('#submit_task')
     
     const selectOption = document.querySelector('#task_group')
     submit.addEventListener('click', ()=>{
@@ -56,6 +77,22 @@ function submitTask(){
         list.addTasktoProject(selectOption.value, newTask)
         //console.log(list.getProjects())
         modal.close()
+    })
+}
+
+function submitProject(){
+    const projectModal = document.querySelector('#project-form')
+    const submit = document.querySelector('#submit_project')
+    const projectGroupList = document.querySelector('#group-list')
+    const taskGroupOptions = document.querySelector('#task_group')
+
+    submit.addEventListener('click', ()=>{
+        createProject()
+        //reset these because loadNavList is going to append over them
+        resetContent(projectGroupList)
+        resetContent(taskGroupOptions)
+        loadNavList(list)
+        projectModal.close()
     })
 }
 
@@ -99,9 +136,17 @@ function addTask(){
     let description = taskDescription.value
     const task = new Task(name, date, description)
     console.log(task)
-
-    return task
 }
 
+function createProject(){
+    const projectName = document.querySelector('#project_name')
+
+    let name = projectName.value
+    const project = new Project(name)
+    console.log(project)
+    list.addProjectToArray(project)
+    //take another modal that asks for name and create new project with input
+    //add the project to projectList array
+}
 
 export {contentLoad, loadProject}
