@@ -1,9 +1,9 @@
 import { Task } from "./todos";
+import { list } from ".";
 
 function contentLoad(project){
     //load a given group of tasks
     loadProject(project)
-
     //form functionality
     openForm()
     submitTask()
@@ -12,13 +12,20 @@ function contentLoad(project){
 function loadProject(project){
     let tasks = project.array.length
     const content = document.querySelector('#content')
+    resetContent(content)//reset DOM before adding elements
     const title = document.createElement('span')
     title.classList.add('group-header')
     title.textContent = project.name
     content.appendChild(title)
-
+    //add each task to our content div
     for(let i = 0; i<tasks; i++){
         createTaskElements(project.array[i])
+    }
+}
+
+function resetContent(content){
+    while(content.firstChild){
+        content.removeChild(content.lastChild)
     }
 }
 
@@ -44,10 +51,10 @@ function submitTask(){
     
     const selectOption = document.querySelector('#task_group')
     submit.addEventListener('click', ()=>{
+        //create task, add it to specific project
         let newTask = addTask()
-        createTaskElements(newTask)
-        //project option
-        console.log(selectOption.value)
+        list.addTasktoProject(selectOption.value, newTask)
+        //console.log(list.getProjects())
         modal.close()
     })
 }
@@ -97,4 +104,4 @@ function addTask(){
 }
 
 
-export {contentLoad}
+export {contentLoad, loadProject}

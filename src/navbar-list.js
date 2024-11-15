@@ -1,6 +1,3 @@
-import { projectList } from "./project"
-const list = projectList()
-
 function addGroupToList(project){
     const list = document.querySelector('#group-list')
     const newGroup = document.createElement('li')
@@ -16,8 +13,12 @@ function addGroupToList(project){
     list.appendChild(newGroup)
 }
 
-function loadNavList(){
+function loadNavList(list){
     //dynamically generate projects in navbar based on the list of projects
+    //loop through main project array and use above function for each project
+    list.getProjects().forEach(element => {
+        addGroupToList(element)
+    });  
 }
 
-export{addGroupToList}
+export{loadNavList}

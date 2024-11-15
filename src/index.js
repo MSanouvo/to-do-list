@@ -1,20 +1,24 @@
 import "./style.css"
 import { Task, updateTask, sortTasks } from "./todos"
 import { Project, projectList } from "./project"
-import { addGroupToList } from "./navbar-list"
+import { loadNavList } from "./navbar-list"
 import { contentLoad } from "./content.js"
 
-const list = projectList()
+export const list = projectList()
 const december = new Project('December Projects')
+const endOfYear = new Project('End of Year Projects')
 list.addProjectToArray(december)
-list.showProjects()
-addGroupToList(december)
+list.addProjectToArray(endOfYear)
 
 const sleep = new Task('sleep', '11pm', 'eepy')
 const gym = new Task('gym', '7pm', 'gains')
 december.addToArray(sleep)
 december.addToArray(gym)
+december.showArray()
+//load DOMs content
 contentLoad(december)
+loadNavList(list)
+
 // const content = document.querySelector('#content')
 // const child = document.createElement('span')
 // child.textContent = 'Hello'
