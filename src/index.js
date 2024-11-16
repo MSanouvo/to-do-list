@@ -2,7 +2,7 @@ import "./style.css"
 import { Task, updateTask, sortTasks } from "./todos"
 import { Project, projectList } from "./project"
 import { loadNavList } from "./navbar-list"
-import { contentLoad } from "./content.js"
+import { contentLoad, submitTask, submitProject } from "./content.js"
 
 //Main module, should hold important variables and load content w/ other modules
 //may only need to import load functions by the end of writing this program
@@ -25,7 +25,8 @@ december.showArray()
 //load DOMs content
 contentLoad(december)
 loadNavList(list)
-
+submitTask()
+submitProject()
 // const content = document.querySelector('#content')
 // const child = document.createElement('span')
 // child.textContent = 'Hello'

@@ -1,4 +1,4 @@
-import { loadProject } from "./content"
+import { contentLoad, loadProject } from "./content"
 
 //this module should house any function related to projects(groups of tasks)
 
@@ -24,7 +24,9 @@ class Project{
 
 function projectList(){
     const projects = []
-    const addProjectToArray = (project) => projects.push(project)
+    const addProjectToArray = (project) =>{
+        projects.push(project)
+    }
     const getProjects = () => projects
 
     //for the form to add task to selected project
@@ -35,7 +37,6 @@ function projectList(){
             if(projects[i].name === project_name){
                 projects[i].addToArray(task)
                 //load project with new task
-                console.log(projects[i])
                 loadProject(projects[i])
             }
         }

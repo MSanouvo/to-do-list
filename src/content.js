@@ -11,9 +11,6 @@ function contentLoad(project){
     //form functionality
     openTaskForm()
     openProjectForm()
-    submitTask()
-    submitProject()
-    console.log('fire')
 }
 
 function loadProject(project){
@@ -68,7 +65,7 @@ function openProjectForm(){
 //creates DOM content using form input
 //need to also add tasks to their selected groups
 function submitTask(){
-    const modal = document.querySelector('#task-form')
+    const taskModal = document.querySelector('#task-form')
     const submit = document.querySelector('#submit_task')
     
     const selectOption = document.querySelector('#task_group')
@@ -77,7 +74,7 @@ function submitTask(){
         let newTask = addTask()
         list.addTasktoProject(selectOption.value, newTask)
         //console.log(list.getProjects())
-        modal.close()
+        taskModal.close()
     })
 }
 
@@ -147,10 +144,8 @@ function createProject(){
 
     let name = projectName.value
     const project = new Project(name)
-    console.log(project)
     list.addProjectToArray(project)
-    //take another modal that asks for name and create new project with input
-    //add the project to projectList array
+    console.log(list.getProjects())
 }
 
-export {contentLoad, loadProject}
+export {contentLoad, loadProject, submitTask, submitProject}
