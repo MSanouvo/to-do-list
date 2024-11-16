@@ -35,6 +35,7 @@ function projectList(){
             if(projects[i].name === project_name){
                 projects[i].addToArray(task)
                 //load project with new task
+                console.log(projects[i])
                 loadProject(projects[i])
             }
         }

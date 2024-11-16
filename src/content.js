@@ -13,6 +13,7 @@ function contentLoad(project){
     openProjectForm()
     submitTask()
     submitProject()
+    console.log('fire')
 }
 
 function loadProject(project){
@@ -136,6 +137,9 @@ function addTask(){
     let description = taskDescription.value
     const task = new Task(name, date, description)
     console.log(task)
+    
+    //IMPORTANT
+    return task
 }
 
 function createProject(){

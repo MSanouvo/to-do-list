@@ -1,6 +1,7 @@
 //Module for nav bar elements
-function addGroupToList(project){
-    const list = document.querySelector('#group-list')
+import { contentLoad } from "./content"
+function addGroupToList(project, list){
+    const groupList = document.querySelector('#group-list')
     const newGroup = document.createElement('li')
     newGroup.textContent = project.name
     newGroup.classList.add('group')
@@ -11,14 +12,28 @@ function addGroupToList(project){
     groupOption.textContent = project.name
     
     taskGroup.appendChild(groupOption)
-    list.appendChild(newGroup)
+    groupList.appendChild(newGroup)
+
+    //currently, event listener is activating multiple times
+
+    // newGroup.addEventListener('click', (e)=>{
+    //     console.log(e.target.textContent)
+    //     let target = e.target.textContent
+    //     const listArray = list.getProjects()
+    //     for(let i=0; i<listArray.length; i++){
+    //         if(listArray[i].name === target){
+    //             contentLoad(listArray[i])
+    //         }
+    //     }
+    // })        
 }
 
 function loadNavList(list){
     //dynamically generate projects in navbar based on the list of projects
     //loop through main project array and use above function for each project
     list.getProjects().forEach(element => {
-        addGroupToList(element)
+        addGroupToList(element, list)
+        
     });  
 }
 
