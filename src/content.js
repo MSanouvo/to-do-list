@@ -20,11 +20,46 @@ function loadProject(project){
     const title = document.createElement('span')
     title.classList.add('group-header')
     title.textContent = project.name
+    
     content.appendChild(title)
+    addSortList(content)
+
     //add each task to our content div
     for(let i = 0; i<tasks; i++){
         createTaskElements(project.array[i])
     }
+}
+
+function addSortList(parent){
+    const sortDiv = document.createElement('div')
+    sortDiv.classList.add('sort')
+    const sortLable = document.createElement('lable')
+    sortLable.textContent = 'sort: '
+    const sort = document.createElement('select')
+    sort.setAttribute('name', 'sort')
+    sort.setAttribute('id', 'sort-button')
+    //options
+    const sortRecent = document.createElement('option')
+    sortRecent.textContent = 'by Recent'
+    const sortOldest = document.createElement('option')
+    sortOldest.textContent = 'by Oldest'
+    const sortName = document.createElement('option')
+    sortName.textContent = 'by Name'
+    const sortPriorty = document.createElement('option')
+    sortPriorty.textContent = 'by Priorty'
+    const sortDate = document.createElement('option')
+    sortDate.textContent = 'by Date'
+
+    //sort options
+    sort.appendChild(sortOldest)
+    sort.appendChild(sortRecent)
+    sort.appendChild(sortName)
+    sort.appendChild(sortPriorty)
+
+    //load content
+    parent.appendChild(sortDiv)
+    sortDiv.appendChild(sortLable)
+    sortDiv.appendChild(sort)
 }
 
 function resetContent(content){
@@ -123,6 +158,7 @@ function createTaskElements(newTask){
     taskComplete.textContent = newTask.checkCompletion()
     const completedButton = document.createElement('input')
     completedButton.setAttribute('type', 'checkbox')
+    completedButton.setAttribute('name', 'complete-button')
     completion.appendChild(completedButton)
     completion.appendChild(taskComplete)
 
