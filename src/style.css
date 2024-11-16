@@ -91,9 +91,9 @@ body{
 #content{
     display: grid;
     grid-template-rows: 50px;
-    grid-auto-rows: 200px; /*maybe use a minmax */
+    grid-auto-rows: 150px; 
     padding: 20px;
-    gap: 10px;
+    gap: 20px;
     background-color: white;
     height: 100%;
     width: 100%;
@@ -114,11 +114,10 @@ body{
 }
 
 .task-card{
-    border: 1px solid red;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    background-color: rgb(255, 255, 255);
+    display: grid;
+    grid-template-rows: 70px 1fr;
+    height: auto;
 }
 
 .task-info:hover{
@@ -126,15 +125,21 @@ body{
 }
 
 .task-info{
-    border: 1px solid black;
     height: 50px;
-    display: flex;
+    display: grid;
+    grid-template-columns: 150px 150px 200px 200px;
+    /* display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-evenly; */
     gap: 20px;
-    padding: 10px;
+}
+.task-info>span,
+.task-info>div{
+    align-self: center;
 }
 
+.task-info,
 .task-description{
-    padding: 10px;
+    border: 1px solid black;
+    padding: 10px 20px;
 }

@@ -102,23 +102,51 @@ function createTaskElements(newTask){
     taskCard.classList.add('task-card')
     const taskInfo = document.createElement('div')
     taskInfo.classList.add('task-info')
+    taskInfo.value = 1
     const descriptionBox = document.createElement('div')
     descriptionBox.classList.add('task-description')
 
     //task elements
-    const infoName = document.createElement('span')
-    infoName.textContent = newTask.name
-    const infoDate = document.createElement('span')
-    infoDate.textContent = newTask.dueDate
-    const infoDescription = document.createElement('span')
-    infoDescription.textContent = newTask.description
+    const taskName = document.createElement('span')
+    taskName.textContent = newTask.name
+    const taskDate = document.createElement('span')
+    taskDate.textContent = newTask.dueDate
+    const taskDescription = document.createElement('span')
+    taskDescription.textContent = newTask.description
+    const taskPriority = document.createElement('span')
+    taskPriority.textContent = 'Priority: ' + newTask.priority
 
-    taskInfo.appendChild(infoName)
-    taskInfo.appendChild(infoDate)
-    descriptionBox.appendChild(infoDescription)
+    //for our task completion
+    const completion = document.createElement('div')
+    completion.classList.add('completion')
+    const taskComplete = document.createElement('span')
+    taskComplete.textContent = newTask.checkCompletion()
+    const completedButton = document.createElement('input')
+    completedButton.setAttribute('type', 'checkbox')
+    completion.appendChild(completedButton)
+    completion.appendChild(taskComplete)
+
+    taskInfo.appendChild(taskName)
+    taskInfo.appendChild(taskDate)
+    taskInfo.appendChild(taskPriority)
+    taskInfo.appendChild(completion)
+    descriptionBox.appendChild(taskDescription)
     taskCard.appendChild(taskInfo)
     taskCard.appendChild(descriptionBox)
-    content.appendChild(taskCard)   
+    content.appendChild(taskCard)  
+    
+    //code for displaying/removing description 
+    //(may be useful for a description dropdown feature)
+    // taskInfo.addEventListener('click', (e)=>{
+    //     console.log(e.target)
+    //     if(e.target.value === 1){
+    //         taskCard.removeChild(descriptionBox)
+    //         e.target.value = 0
+    //     } else{
+    //         taskCard.appendChild(descriptionBox)
+    //         e.target.value = 1
+    //     }
+    // })
 }
 
 //creates task from form inputs
