@@ -136,7 +136,7 @@ body{
 .task-info{
     height: 50px;
     display: grid;
-    grid-template-columns: 150px 150px 200px 200px;
+    grid-template-columns: 125px 125px 200px 140px 1fr;
     /* display: flex;
     align-items: center;
     justify-content: space-evenly; */
@@ -159,4 +159,15 @@ body{
 
 #task-description::-webkit-scrollbar{
     display: none;
+}
+
+.task-buttons{
+    justify-self: end;
+    display: grid;
+    grid-template-columns: 100px 100px;
+    gap: 20px;
+}
+
+.buttons{
+    height: 30px;
 }

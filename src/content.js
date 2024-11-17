@@ -1,4 +1,4 @@
-import { Task } from "./todos";
+import { Task, updateTask } from "./todos";
 import { list } from ".";
 import { Project } from "./project";
 import { loadNavList } from "./navbar-list";
@@ -20,6 +20,7 @@ function loadProject(project){
     const title = document.createElement('span')
     title.classList.add('group-header')
     title.textContent = project.name
+    title.setAttribute('id', project.name)
     
     content.appendChild(title)
     addSortList(content)
@@ -87,6 +88,7 @@ function openProjectForm(){
     const modalButton = document.querySelector('#open-project-modal')
     modalButton.addEventListener('click', ()=>{
         projectForm.showModal()
+        
     })
 
     projectForm.addEventListener('click', (e)=>{
@@ -96,6 +98,45 @@ function openProjectForm(){
     })
 }
 
+function openEditForm(button, task){
+    const editForm = document.querySelector('#edit-task-form')
+    const taskName = document.querySelector('#edit_name')
+    const taskDate = document.querySelector('#edit_date')
+    const taskDescription = document.querySelector('#edit_description')
+    
+
+    button.addEventListener('click', ()=>{
+        editForm.showModal()
+        console.log(task)
+        taskName.value = task.name
+        taskDate.value = task.dueDate
+        taskDescription.value = task.description
+        editTask(task)
+    })
+
+    editForm.addEventListener('click', (e)=>{
+        if(e.target === editForm){
+            editForm.close()
+        }
+    })
+}
+
+function editTask(task){
+    const editName = document.querySelector('#edit_name')
+    const editDate = document.querySelector('#edit_date')
+    const editDescription = document.querySelector('#edit_description')
+    const modal = document.querySelector('#edit-task-form')
+    const submit = document.querySelector('#submit-edit')
+
+    submit.addEventListener('click', ()=>{
+        let taskEdit = updateTask(task)
+        taskEdit.changeName(editName.value)
+        taskEdit.changeDueDate(editDate.value)
+        taskEdit.changeDescription(editDescription.value)
+        console.log(task)
+        modal.close()
+    })
+}
 
 //creates DOM content using form input
 //need to also add tasks to their selected groups
@@ -162,14 +203,32 @@ function createTaskElements(newTask){
     completion.appendChild(completedButton)
     completion.appendChild(taskComplete)
 
+    //edit and remove buttons
+    const buttonDiv = document.createElement('div')
+    buttonDiv.classList.add('task-buttons')
+    const edit = document.createElement('button')
+    edit.textContent = "Edit Task"
+    edit.classList.add('buttons')
+    edit.setAttribute('id', 'edit')
+    const remove = document.createElement('button')
+    remove.textContent = 'Remove Task'
+    remove.classList.add('buttons')
+    remove.setAttribute('id', 'remove')
+
+
     taskInfo.appendChild(taskName)
     taskInfo.appendChild(taskDate)
     taskInfo.appendChild(taskPriority)
     taskInfo.appendChild(completion)
+    taskInfo.appendChild(buttonDiv)
+    buttonDiv.appendChild(edit)
+    buttonDiv.appendChild(remove)
     descriptionBox.appendChild(taskDescription)
     taskCard.appendChild(taskInfo)
     taskCard.appendChild(descriptionBox)
-    content.appendChild(taskCard)  
+    content.appendChild(taskCard) 
+    
+    openEditForm(edit, newTask)
     
     //code for displaying/removing description 
     //(may be useful for a description dropdown feature)

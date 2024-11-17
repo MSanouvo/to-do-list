@@ -62,5 +62,24 @@
             <button id="submit_project" type="button">submit</button>
         </form>
     </dialog>
+    <dialog id="edit-task-form">
+        <form class="input-modal" action="">
+            <span class="form-header">Edit Task</span>
+            <div class="form-input">
+                <label for="task_name">Task Name:</label>
+                <input type="text" id="edit_name" name="edit_name">
+            </div>
+            <div class="form-input">
+                <label for="due_date">Due by:</label>
+                <input type="text" id="edit_date" name="edit_date">
+            </div>
+            <div class="form-input">
+                <label for="task_description">Description:</label>
+                <textarea rows="5" cols="20" name="edit_description" id="edit_description"></textarea>
+            </div>
+            
+            <button id="submit-edit" type="button">submit</button>
+        </form>
+    </dialog>
 </body>
 </html>
