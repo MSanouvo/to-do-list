@@ -27,7 +27,7 @@ function loadProject(project){
 
     //add each task to our content div
     for(let i = 0; i<tasks; i++){
-        createTaskElements(project.array[i])
+        createTaskElements(project.array[i], i)
     }
 }
 
@@ -171,11 +171,13 @@ function submitProject(){
 }
 
 //function used to create DOM elements for content
-function createTaskElements(newTask){
+function createTaskElements(newTask, index){
     //Content elements
     const content = document.querySelector('#content')
     const taskCard = document.createElement('div')
     taskCard.classList.add('task-card')
+    taskCard.setAttribute('data-index-number', index)
+    console.log(taskCard.dataset.indexNumber)
     const taskInfo = document.createElement('div')
     taskInfo.classList.add('task-info')
     taskInfo.value = 1
@@ -198,6 +200,11 @@ function createTaskElements(newTask){
     const taskComplete = document.createElement('span')
     taskComplete.textContent = newTask.checkCompletion()
     const completedButton = document.createElement('input')
+    if(newTask.completed === true){
+        completedButton.checked = true
+    }else{
+        completedButton.checked = false
+    }
     completedButton.setAttribute('type', 'checkbox')
     completedButton.setAttribute('name', 'complete-button')
     completion.appendChild(completedButton)
@@ -228,7 +235,9 @@ function createTaskElements(newTask){
     taskCard.appendChild(descriptionBox)
     content.appendChild(taskCard) 
     
+    markComplete(completedButton, newTask)
     openEditForm(edit, newTask)
+    removeTask(remove, index)
 
     
     //code for displaying/removing description 
@@ -243,6 +252,30 @@ function createTaskElements(newTask){
     //         e.target.value = 1
     //     }
     // })
+}
+
+function removeTask(button, index){
+    button.addEventListener('click', ()=>{
+        console.log(index)
+        //take out index from project array and reload content
+        //need to figure out how to get the project to call content load
+    })
+}
+
+function markComplete(button, task){
+    let completionUpdate = updateTask(task)
+    button.addEventListener('click', ()=>{
+        console.log(task)
+        if(task.completed === false){
+            completionUpdate.isComplete()
+            console.log(task)
+            button.checked = true
+        }else{
+            completionUpdate.isIncomplete()
+            console.log(task)
+            button.checked = false
+        }
+    })
 }
 
 //creates task from form inputs
