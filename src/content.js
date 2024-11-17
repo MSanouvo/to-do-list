@@ -135,7 +135,7 @@ function editTask(task){
         taskEdit.changeDescription(editDescription.value)
         console.log(task)
         modal.close()
-    })
+    },{once:true})
 }
 
 //creates DOM content using form input
@@ -229,6 +229,7 @@ function createTaskElements(newTask){
     content.appendChild(taskCard) 
     
     openEditForm(edit, newTask)
+
     
     //code for displaying/removing description 
     //(may be useful for a description dropdown feature)
