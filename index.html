@@ -6,9 +6,80 @@
     <title>To do</title>
 <script defer src="main.js"></script></head>
 <body>
-    <h1>head</h1>
-    <div id="content">
-
+    <nav id="nav-bar">
+        <button class="nav-header">To Do list</button>
+            <ul id="group-list">
+                <!-- <li class="group">project</li> -->
+            </ul>
+        <button class="open-modal" id="open-task-modal"> New Task </button>
+        <button class="open-modal" id="open-project-modal"> New Project</button>
+    </nav>
+    <div id="content-container">
+        <div id="content">
+            <!-- <span class="group-header">title</span>
+            <div class="task-card">
+                <div class="task-info">
+                    <span>test</span>
+                    <span>test</span>
+                </div>
+                <div class="task-description" id="active">
+                    <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. At quas placeat, sapiente nulla tempore quo earum. Debitis quidem architecto, hic, magni earum autem, eum possimus quibusdam similique omnis repudiandae! Temporibus?</span>
+                </div>
+            </div> -->
+        </div>
     </div>
+    <dialog id="task-form">
+        <form class="input-modal" action="">
+            <span class="form-header">New Task</span>
+            <div class="form-input">
+                <label for="task_name">Task Name:</label>
+                <input type="text" id="task_name" name="task_name">
+            </div>
+            <div class="form-input">
+                <label for="due_date">Due by:</label>
+                <input type="text" id="due_date" name="due_date">
+            </div>
+            <div class="form-input">
+                <label for="task_group">Task Group:</label>
+                <select name="task_group" id="task_group">
+                </select>
+            </div>
+            <div class="form-input">
+                <label for="task_description">Description:</label>
+                <textarea rows="5" cols="20" name="task_description" id="task_description"></textarea>
+            </div>
+            
+            <button id="submit_task" type="button">submit</button>
+        </form>
+    </dialog>
+    <dialog id="project-form">
+        <form class="input-modal" action="">
+            <span class="form-header">New Project</span>
+            <div class="form-input">
+                <label for="project_name">Project Name:</label>
+                <input type="text" id="project_name" name="project_name">
+            </div>
+            <button id="submit_project" type="button">submit</button>
+        </form>
+    </dialog>
+    <dialog id="edit-task-form">
+        <form class="input-modal" action="">
+            <span class="form-header">Edit Task</span>
+            <div class="form-input">
+                <label for="task_name">Task Name:</label>
+                <input type="text" id="edit_name" name="edit_name">
+            </div>
+            <div class="form-input">
+                <label for="due_date">Due by:</label>
+                <input type="text" id="edit_date" name="edit_date">
+            </div>
+            <div class="form-input">
+                <label for="task_description">Description:</label>
+                <textarea rows="5" cols="20" name="edit_description" id="edit_description"></textarea>
+            </div>
+            
+            <button id="submit-edit" type="button">submit</button>
+        </form>
+    </dialog>
 </body>
 </html>
