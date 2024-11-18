@@ -1,4 +1,4 @@
-import { Task, updateTask } from "./todos";
+import { Task, updateTask, sortTasks } from "./todos";
 import { list } from ".";
 import { Project } from "./project";
 import { loadNavList } from "./navbar-list";
@@ -11,6 +11,7 @@ function contentLoad(project){
     //form functionality
     openTaskForm()
     openProjectForm()
+    console.log(localStorage.length)
 }
 
 function loadProject(project){
@@ -23,7 +24,7 @@ function loadProject(project){
     title.setAttribute('id', project.name)
     
     content.appendChild(title)
-    addSortList(content)
+    addSortList(content, project)
 
     //add each task to our content div
     for(let i = 0; i<tasks; i++){
@@ -31,7 +32,7 @@ function loadProject(project){
     }
 }
 
-function addSortList(parent){
+function addSortList(parent, project){
     const sortDiv = document.createElement('div')
     sortDiv.classList.add('sort')
     const sortLable = document.createElement('lable')
@@ -61,6 +62,27 @@ function addSortList(parent){
     parent.appendChild(sortDiv)
     sortDiv.appendChild(sortLable)
     sortDiv.appendChild(sort)
+
+    //figure out sorting features later
+    // //for sorting functions
+    // let sortedProject = sortTasks(project)
+    // sortRecent.addEventListener('click', ()=>{
+    //     sortedProject.recentArray()
+    //     console.log(project)
+    // })
+    // sortOldest.addEventListener('click', ()=>{
+    //     // sortedProject.recentArray()
+    //     // console.log(project)
+    // })
+    // sortName.addEventListener('click', ()=>{
+    //     sortedProject.sortedName()
+    //     console.log(project)
+    // })
+    // sortPriorty.addEventListener('click', ()=>{
+    //     sortedProject.sortPriorty
+    //     console.log(project)
+    // })
+    // sortDate
 }
 
 function resetContent(content){
@@ -172,6 +194,7 @@ function submitProject(){
 
 //function used to create DOM elements for content
 function createTaskElements(newTask, index){
+    console.log("is Task Class? " + (newTask instanceof Task)) //Check if new tasks are actual task objects
     //Content elements
     const content = document.querySelector('#content')
     const taskCard = document.createElement('div')
@@ -290,6 +313,7 @@ function addTask(){
     let date = dueDate.value
     let description = taskDescription.value
     const task = new Task(name, date, description)
+    //task.saveTask()
     console.log(task)
     
     //IMPORTANT

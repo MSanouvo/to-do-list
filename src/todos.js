@@ -1,3 +1,5 @@
+import { contentLoad } from "./content"
+
 //module for our tasks and task related functions
 class Task{
     constructor(name, dueDate, description){
@@ -17,7 +19,10 @@ class Task{
             console.log('Incomplete')
             return 'Incomplete'
         }
-        
+    }
+
+    saveTask(){
+        localStorage.setItem(this.name, JSON.stringify(this))
     }
 }
 //updates all properties of the task
@@ -35,10 +40,12 @@ function updateTask(task){
 
 function sortTasks(array){
     //sort in descending order (greatest -> least prio)
+    const recentArray = () => contentLoad(array)
     const rankedPriority = () => {
         let rankedCopy = [...array]
         let rankedArray = rankedCopy.sort((a, b) => b.priority - a.priority)
         console.log(rankedArray)
+        contentLoad(rankedArray)
     }
     //sort tasks alphabetically
     const sortedName = () =>{
@@ -53,6 +60,7 @@ function sortTasks(array){
             return 0
         })
         console.log(sortedArray)
+        contentLoad(sortedArray)
     }
 
     const byDate = () =>{
@@ -71,8 +79,9 @@ function sortTasks(array){
             return 1
         })
         console.log(sortIncomplete)
+        contentLoad(sortIncomplete)
     }
-    return{rankedPriority, sortedName, sortIncomplete}
+    return{rankedPriority, sortedName, sortIncomplete, recentArray}
 }
 
 export {Task, updateTask, sortTasks}

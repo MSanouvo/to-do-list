@@ -9,14 +9,20 @@ import { contentLoad, submitTask, submitProject } from "./content.js"
 
 export const list = projectList() //needed variable ?
 
-const december = new Project('December Projects') //test variable
+// let testObject = JSON.parse(localStorage.getItem('December Projects'))
+// console.log(testObject.name)
+// //testObject.showArray()
+// console.log(testObject instanceof Project)
+
+//const december = new Project('December Projects') //test variable
+const december = loadJSONProjects(localStorage.getItem('December Projects'))
 const endOfYear = new Project('End of Year Projects') //test variable
 list.addProjectToArray(december)
 list.addProjectToArray(endOfYear)
 
-const sleep = new Task('sleep', '11pm', 'eepy') //test variable
+//const sleep = new Task('sleep', '11pm', 'eepy') //test variable
 const gym = new Task('gym', '7pm', 'gains') //test variable
-december.addToArray(sleep)
+//december.addToArray(sleep)
 december.addToArray(gym)
 december.showArray()
 
@@ -27,6 +33,18 @@ contentLoad(december)
 loadNavList(list)
 submitTask()
 submitProject()
+
+
+
+
+function loadJSONProjects(project){
+    const savedObject = JSON.parse(project)
+    const newProject = new Project(savedObject.name)
+    console.log(newProject)
+    return newProject
+}
+
+//localStorage.clear()
 // const content = document.querySelector('#content')
 // const child = document.createElement('span')
 // child.textContent = 'Hello'
