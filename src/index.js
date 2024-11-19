@@ -17,16 +17,20 @@ export const list = projectList() //needed variable ?
 //const december = new Project('December Projects') //test variable
 const december = loadJSONProjects(localStorage.getItem('December Projects'))
 const endOfYear = new Project('End of Year Projects') //test variable
+//const endOfYear = loadJSONProjects(localStorage.getItem('End of Year Projects'))
 list.addProjectToArray(december)
 list.addProjectToArray(endOfYear)
 
-//const sleep = new Task('sleep', '11pm', 'eepy') //test variable
+const sleep = new Task('sleep', '11pm', 'eepy') //test variable
 const gym = new Task('gym', '7pm', 'gains') //test variable
 //december.addToArray(sleep)
-december.addToArray(gym)
-december.showArray()
+// december.addToArray(gym)
+// december.showArray()
 
-
+// const general = new Project ('General')
+// const general = loadJSONProjects(localStorage.getItem('General'))
+//const projects = loadJSONProjects(localStorage.getItem('Projects'))
+// list.addProjectToArray(general)
 
 //load DOMs content
 contentLoad(december)
@@ -34,77 +38,34 @@ loadNavList(list)
 submitTask()
 submitProject()
 
+function checkLocalStorage(){
+    for(let i=0; i<localStorage.length; i++){
+        console.log(localStorage.getItem(localStorage.key(i)))
+    }
+}
 
+checkLocalStorage()
 
-
+loadJSONProjects(localStorage.getItem('December Projects'))
 function loadJSONProjects(project){
-    const savedObject = JSON.parse(project)
-    const newProject = new Project(savedObject.name)
-    console.log(newProject)
+    const rawObject = JSON.parse(project)
+    console.log(rawObject.array)
+    let taskArray = []
+    // const newProjectLength = newProject.array.length
+    for(let i=0; i<rawObject.array.length; i++){
+        let task = rawObject.array[i]
+        let name = task.name
+        let date = task.dueDate
+        let description = task.description
+        const newTask = new Task(name, date, description)
+        taskArray.push(newTask)  
+        //newProject.addToArray(newTask)
+        console.log(newTask)
+    }
+    console.log(taskArray)
+    const newProject = new Project(rawObject.name, taskArray)
+
     return newProject
 }
 
 //localStorage.clear()
-// const content = document.querySelector('#content')
-// const child = document.createElement('span')
-// child.textContent = 'Hello'
-
-// content.appendChild(child)
-
-
-// const sleep = new Task('sleep', '9pm')
-// console.log(sleep.name)
-// console.log(sleep.dueDate)
-// const newSleep = updateTask(sleep)
-// newSleep.changeDescription('I wanna sleep early')
-// console.log(sleep.description)
-// sleep.checkCompletion()
-// newSleep.isComplete()
-// sleep.checkCompletion()
-// newSleep.raisePriority()
-// console.log(sleep.priority)
-
-// newSleep.lowerPriority()
-// newSleep.lowerPriority()
-// newSleep.lowerPriority()
-// newSleep.lowerPriority()
-// console.log(sleep.priority)
-// const eat = new Task('eat')
-// const gym = new Task('gym')
-// const shower = new Task('shower')
-// const work = new Task('work')
-// let eatPriority = updateTask(eat)
-// eatPriority.raisePriority()
-// eatPriority.raisePriority()
-// let gymPriority = updateTask(gym)
-// gymPriority.raisePriority()
-// gymPriority.raisePriority()
-// gymPriority.raisePriority()
-// let showerPriority = updateTask(shower)
-// showerPriority.raisePriority()
-// let workPriority = updateTask(work)
-// workPriority.isComplete()
-// workPriority.raisePriority()
-// workPriority.raisePriority()
-// workPriority.raisePriority()
-// workPriority.raisePriority()
-// workPriority.raisePriority()
-// workPriority.raisePriority()
-// workPriority.raisePriority()
-// console.log(gym.priority)
-// console.log(shower.priority)
-// console.log(work.priority)
-// console.log(eat.priority)
-
-// const testTasks = new Project('test')
-// testTasks.addToArray(sleep)
-// testTasks.addToArray(gym)
-// testTasks.addToArray(eat)
-// testTasks.addToArray(shower)
-// testTasks.addToArray(work)
-
-// testTasks.showArray()
-// let sortTests = sortTasks(testTasks.array)
-// sortTests.rankedPriority()
-// sortTests.sortedName()
-// sortTests.sortIncomplete()

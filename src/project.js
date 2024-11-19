@@ -3,13 +3,13 @@ import { contentLoad, loadProject } from "./content"
 //this module should house any function related to projects(groups of tasks)
 
 class Project{
-    constructor(arrayName){
+    constructor(arrayName, array = []){
         this.name = arrayName
-        this.array = []
+        this.array = array
     }
 
     addToArray(task){
-        task.saveTask()
+        // task.saveTask()
         this.array.push(task)
         this.saveProject()
     }
@@ -32,7 +32,6 @@ function projectList(){
     const addProjectToArray = (project) =>{
         projects.push(project)
         project.saveProject()
-        localStorage.setItem('Projects', JSON.stringify(projects))
     }
     const getProjects = () => projects
 

@@ -21,9 +21,9 @@ class Task{
         }
     }
 
-    saveTask(){
-        localStorage.setItem(this.name, JSON.stringify(this))
-    }
+    // saveTask(){
+    //     localStorage.setItem(this.name, JSON.stringify(this))
+    // }
 }
 //updates all properties of the task
 function updateTask(task){
