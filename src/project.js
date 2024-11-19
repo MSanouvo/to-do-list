@@ -31,7 +31,7 @@ function projectList(){
     const projects = []
     const addProjectToArray = (project) =>{
         projects.push(project)
-        project.saveProject()
+        //project.saveProject()
     }
     const getProjects = () => projects
 
