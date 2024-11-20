@@ -28,7 +28,6 @@ class Project{
     removeTask(index){
         console.log(this.array[index])
         this.array.splice(index, 1)
-        contentLoad(this)
     }
 }
 

@@ -45,7 +45,9 @@ function loadJSONProjects(project){
         let name = task.name
         let date = task.dueDate
         let description = task.description
-        const newTask = new Task(name, date, description)
+        let completion = task.completed
+        let priority = task.priority
+        const newTask = new Task(name, date, description, completion, priority)
         taskArray.push(newTask)  
         //newProject.addToArray(newTask)
         //console.log(newTask)

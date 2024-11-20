@@ -2,12 +2,12 @@ import { contentLoad } from "./content"
 
 //module for our tasks and task related functions
 class Task{
-    constructor(name, dueDate, description){
+    constructor(name, dueDate, description, completed = false, priority = 0){
         this.name = name
         this.dueDate = dueDate
         this.description = description
-        this.completed = false
-        this.priority = 0
+        this.completed = completed
+        this.priority = priority
     }
 
     //better than just printing true/false

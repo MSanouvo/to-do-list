@@ -119,7 +119,7 @@ function openProjectForm(){
     })
 }
 
-function openEditForm(button, task){
+function openEditForm(button, task, project){
     const editForm = document.querySelector('#edit-task-form')
     const taskName = document.querySelector('#edit_name')
     const taskDate = document.querySelector('#edit_date')
@@ -132,7 +132,7 @@ function openEditForm(button, task){
         taskName.value = task.name
         taskDate.value = task.dueDate
         taskDescription.value = task.description
-        editTask(task)
+        editTask(task, project)
     })
 
     editForm.addEventListener('click', (e)=>{
@@ -142,7 +142,7 @@ function openEditForm(button, task){
     })
 }
 
-function editTask(task){
+function editTask(task, project){
     const editName = document.querySelector('#edit_name')
     const editDate = document.querySelector('#edit_date')
     const editDescription = document.querySelector('#edit_description')
@@ -156,6 +156,7 @@ function editTask(task){
         taskEdit.changeDescription(editDescription.value)
         console.log(task)
         modal.close()
+        saveProjectState(project)
     },{once:true})
 }
 
@@ -263,8 +264,8 @@ function createTaskElements(newTask, index, project){
     taskCard.appendChild(descriptionBox)
     content.appendChild(taskCard) 
     
-    markComplete(completedButton, newTask)
-    openEditForm(edit, newTask)
+    markComplete(completedButton, newTask, project)
+    openEditForm(edit, newTask, project)
     removeTask(remove, index, project)
 
     
@@ -286,12 +287,12 @@ function removeTask(button, index, project){
     button.addEventListener('click', ()=>{
         console.log(index)
         project.removeTask(index)
-        list.saveProjectList()
+        saveProjectState(project)
         //confirmation modal would be nice
     })
 }
 
-function markComplete(button, task){
+function markComplete(button, task, project){
     let completionUpdate = updateTask(task)
     button.addEventListener('click', ()=>{
         console.log(task)
@@ -299,10 +300,12 @@ function markComplete(button, task){
             completionUpdate.isComplete()
             console.log(task)
             button.checked = true
+            saveProjectState(project)
         }else{
             completionUpdate.isIncomplete()
             console.log(task)
             button.checked = false
+            saveProjectState(project)
         }
     })
 }
@@ -333,6 +336,11 @@ function createProject(){
     const project = new Project(name)
     list.addProjectToArray(project)
     console.log(list.getProjects())
+}
+
+function saveProjectState(project){
+    list.saveProjectList()
+    contentLoad(project)
 }
 
 export {contentLoad, loadProject, submitTask, submitProject}
