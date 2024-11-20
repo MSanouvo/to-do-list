@@ -1,23 +1,42 @@
 import { list } from "."
 import { Task } from "./todos"
 import { Project } from "./project"
+import { contentLoad } from "./content"
 
 //Module for localstorage related functions
 
 //to reset data during testing
-//localStorage.clear() 
-function checkLocalStorage(){
-    for(let i=0; i<(localStorage.length); i++){
-        let rawProject = localStorage.getItem(localStorage.key(i))
+//localStorage.clear()
+
+//Local Storage should only have one key
+function checkLocalStorage(item){
+    let rawItem = JSON.parse(item)
+    console.log(rawItem)
+    let masterList = []
+    for(let i=0; i<rawItem.length; i++){
+        masterList.push(rawItem[i])
+    }
+    console.log(masterList)
+    return masterList
+}
+
+//recreate all of our projects/tasks from the master list
+function makeProjects(array){
+    let starter = []
+    for(let i=0; i<(array.length); i++){
+        let rawProject = array[i]
         console.log(rawProject)
         let newProject = loadJSONProjects(rawProject)
         list.addProjectToArray(newProject)
         console.log(list.getProjects())
+        starter.push(newProject)
     }
+    //Initialize our DOM content assuming localstorage is populated
+    contentLoad(starter[0])
 }
 
 function loadJSONProjects(project){
-    const rawObject = JSON.parse(project)
+    const rawObject = project
     //console.log(rawObject.array)
     let taskArray = []
     // const newProjectLength = newProject.array.length
@@ -37,4 +56,4 @@ function loadJSONProjects(project){
     return newProject
 }
 
-export {loadJSONProjects, checkLocalStorage}
+export {checkLocalStorage, makeProjects}

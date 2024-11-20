@@ -11,7 +11,7 @@ class Project{
     addToArray(task){
         // task.saveTask()
         this.array.push(task)
-        this.saveProject()
+        //this.saveProject()
     }
     //mostly used for testing
     showArray(){
@@ -31,7 +31,8 @@ function projectList(){
     const projects = []
     const addProjectToArray = (project) =>{
         projects.push(project)
-        project.saveProject()
+        //project.saveProject()
+        saveProjectList()
     }
     const getProjects = () => projects
 
@@ -42,13 +43,15 @@ function projectList(){
         for(let i=0; i<projects.length; i++){
             if(projects[i].name === project_name){
                 projects[i].addToArray(task)
-                projects[i].saveProject()
+                //projects[i].saveProject()
                 //load project with new task
                 loadProject(projects[i])
+                saveProjectList()
             }
         }
     }
     const showProjects = () => console.log(projects)
+    const saveProjectList = () => localStorage.setItem('list', JSON.stringify(projects))
 
     return {showProjects, addProjectToArray, addTasktoProject, getProjects}
 }
