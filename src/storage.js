@@ -11,12 +11,12 @@ import { contentLoad } from "./content"
 //Local Storage should only have one key
 function checkLocalStorage(item){
     let rawItem = JSON.parse(item)
-    console.log(rawItem)
+    //console.log(rawItem)
     let masterList = []
     for(let i=0; i<rawItem.length; i++){
         masterList.push(rawItem[i])
     }
-    console.log(masterList)
+    //console.log(masterList)
     return masterList
 }
 
@@ -25,10 +25,10 @@ function makeProjects(array){
     let starter = []
     for(let i=0; i<(array.length); i++){
         let rawProject = array[i]
-        console.log(rawProject)
+        //console.log(rawProject)
         let newProject = loadJSONProjects(rawProject)
         list.addProjectToArray(newProject)
-        console.log(list.getProjects())
+        //console.log(list.getProjects())
         starter.push(newProject)
     }
     //Initialize our DOM content assuming localstorage is populated

@@ -142,6 +142,37 @@ function openEditForm(button, task, project){
     })
 }
 
+
+function openTaskRemovalConfirmation(button, task, index, project){
+    const confirmationModal = document.querySelector('#remove-confirmation')
+    const confirmationButtons = document.querySelector('#remove-modal')
+    let removalTarget = null
+
+    button.addEventListener('click', ()=>{
+        removalTarget = index
+        removeItemMessage(task.name)
+        console.log(removalTarget)
+        confirmationModal.showModal()
+    })
+
+    confirmationButtons.addEventListener('click', (event)=>{
+        let target = event.target
+        if(removalTarget != null){
+            switch(target.id){
+                case 'yes':
+                    console.log(removalTarget)
+                    removeTask(removalTarget, project)
+                    confirmationModal.close()
+                    removalTarget = null
+                    break
+                case 'no':
+                    confirmationModal.close()
+                    removalTarget =null
+                    break
+            }
+        }
+    })
+}
 function editTask(task, project){
     const editName = document.querySelector('#edit_name')
     const editDate = document.querySelector('#edit_date')
@@ -194,8 +225,8 @@ function submitProject(){
 
 //function used to create DOM elements for content
 function createTaskElements(newTask, index, project){
-    console.log(project)
-    console.log("is Task Class? " + (newTask instanceof Task)) //Check if new tasks are actual task objects
+    //console.log(project)
+    //console.log("is Task Class? " + (newTask instanceof Task)) //Check if new tasks are actual task objects
     //Content elements
     const content = document.querySelector('#content')
     const taskCard = document.createElement('div')
@@ -212,7 +243,7 @@ function createTaskElements(newTask, index, project){
     const taskName = document.createElement('span')
     taskName.textContent = newTask.name
     const taskDate = document.createElement('span')
-    console.log(newTask.dueDate)
+    //console.log(newTask.dueDate)
     if(newTask.dueDate === ''){
         taskDate.textContent = "---" //For clarity
     }else{
@@ -266,7 +297,7 @@ function createTaskElements(newTask, index, project){
     
     markComplete(completedButton, newTask, project)
     openEditForm(edit, newTask, project)
-    removeTask(remove, index, project)
+    openTaskRemovalConfirmation(remove, newTask, index, project)
 
     
     //code for displaying/removing description 
@@ -283,13 +314,9 @@ function createTaskElements(newTask, index, project){
     // })
 }
 
-function removeTask(button, index, project){
-    button.addEventListener('click', ()=>{
-        console.log(index)
-        project.removeTask(index)
-        saveProjectState(project)
-        //confirmation modal would be nice
-    })
+function removeTask(index, project){
+    project.removeTask(index)
+    saveProjectState(project)
 }
 
 function markComplete(button, task, project){
@@ -341,6 +368,11 @@ function createProject(){
 function saveProjectState(project){
     list.saveProjectList()
     contentLoad(project)
+}
+
+function removeItemMessage(item){
+    const message = document.querySelector('#remove-message')
+    message.textContent = "Are you sure you want to remove "+item+"?"
 }
 
 export {contentLoad, loadProject, submitTask, submitProject}

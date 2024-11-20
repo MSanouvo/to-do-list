@@ -13,10 +13,10 @@ class Task{
     //better than just printing true/false
     checkCompletion(){
         if(this.completed === true){
-            console.log('Completed!')
+            //console.log('Completed!')
             return 'Completed'
         }else{
-            console.log('Incomplete')
+            //console.log('Incomplete')
             return 'Incomplete'
         }
     }
