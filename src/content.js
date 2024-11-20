@@ -142,37 +142,6 @@ function openEditForm(button, task, project){
     })
 }
 
-
-function openTaskRemovalConfirmation(button, task, index, project){
-    const confirmationModal = document.querySelector('#remove-confirmation')
-    const confirmationButtons = document.querySelector('#remove-modal')
-    let removalTarget = null
-
-    button.addEventListener('click', ()=>{
-        removalTarget = index
-        removeItemMessage(task.name)
-        console.log(removalTarget)
-        confirmationModal.showModal()
-    })
-
-    confirmationButtons.addEventListener('click', (event)=>{
-        let target = event.target
-        if(removalTarget != null){
-            switch(target.id){
-                case 'yes':
-                    console.log(removalTarget)
-                    removeTask(removalTarget, project)
-                    confirmationModal.close()
-                    removalTarget = null
-                    break
-                case 'no':
-                    confirmationModal.close()
-                    removalTarget =null
-                    break
-            }
-        }
-    })
-}
 function editTask(task, project){
     const editName = document.querySelector('#edit_name')
     const editDate = document.querySelector('#edit_date')
@@ -297,7 +266,34 @@ function createTaskElements(newTask, index, project){
     
     markComplete(completedButton, newTask, project)
     openEditForm(edit, newTask, project)
-    openTaskRemovalConfirmation(remove, newTask, index, project)
+
+    //Remove Dialog for task
+    const confirmationModal = document.querySelector('#remove-confirmation')
+    const confirmationButtons = document.querySelector('#remove-modal')
+    let removalTarget = null
+
+    remove.addEventListener('click', ()=>{
+        removalTarget = index
+        removeItemMessage(newTask.name)
+        confirmationModal.showModal()
+    })
+
+    confirmationButtons.addEventListener('click', (event)=>{
+        let target = event.target
+        if(removalTarget != null){
+            switch(target.id){
+                case 'yes':
+                    removeTask(removalTarget, project)
+                    confirmationModal.close()
+                    removalTarget = null
+                    break
+                case 'no':
+                    confirmationModal.close()
+                    removalTarget =null
+                    break
+            }
+        }
+    })
 
     
     //code for displaying/removing description 
