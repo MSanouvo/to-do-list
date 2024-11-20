@@ -25,6 +25,11 @@ class Project{
     saveProject(){
         localStorage.setItem(this.name, JSON.stringify(this))
     }
+    removeTask(index){
+        console.log(this.array[index])
+        this.array.splice(index, 1)
+        contentLoad(this)
+    }
 }
 
 function projectList(){
@@ -50,10 +55,20 @@ function projectList(){
             }
         }
     }
+
+    const removeTaskFromProject = (project, index) =>{
+        for(let i=0; i<projects.length; i++){
+            if(projects[i].name === project.name){
+                for(let k=0; k<project.length;k++){
+
+                }
+            }
+        }
+    }
     const showProjects = () => console.log(projects)
     const saveProjectList = () => localStorage.setItem('list', JSON.stringify(projects))
 
-    return {showProjects, addProjectToArray, addTasktoProject, getProjects}
+    return {showProjects, addProjectToArray, addTasktoProject, getProjects, saveProjectList}
 }
 
 

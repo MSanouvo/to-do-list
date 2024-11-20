@@ -11,7 +11,6 @@ function contentLoad(project){
     //form functionality
     openTaskForm()
     openProjectForm()
-    console.log(localStorage.length)
 }
 
 function loadProject(project){
@@ -28,7 +27,7 @@ function loadProject(project){
 
     //add each task to our content div
     for(let i = 0; i<tasks; i++){
-        createTaskElements(project.array[i], i)
+        createTaskElements(project.array[i], i, project)
     }
 }
 
@@ -193,7 +192,8 @@ function submitProject(){
 }
 
 //function used to create DOM elements for content
-function createTaskElements(newTask, index){
+function createTaskElements(newTask, index, project){
+    console.log(project)
     console.log("is Task Class? " + (newTask instanceof Task)) //Check if new tasks are actual task objects
     //Content elements
     const content = document.querySelector('#content')
@@ -211,7 +211,12 @@ function createTaskElements(newTask, index){
     const taskName = document.createElement('span')
     taskName.textContent = newTask.name
     const taskDate = document.createElement('span')
-    taskDate.textContent = newTask.dueDate
+    console.log(newTask.dueDate)
+    if(newTask.dueDate === ''){
+        taskDate.textContent = "---" //For clarity
+    }else{
+        taskDate.textContent = newTask.dueDate
+    }
     const taskDescription = document.createElement('span')
     taskDescription.textContent = newTask.description
     const taskPriority = document.createElement('span')
@@ -260,7 +265,7 @@ function createTaskElements(newTask, index){
     
     markComplete(completedButton, newTask)
     openEditForm(edit, newTask)
-    removeTask(remove, index)
+    removeTask(remove, index, project)
 
     
     //code for displaying/removing description 
@@ -277,11 +282,12 @@ function createTaskElements(newTask, index){
     // })
 }
 
-function removeTask(button, index){
+function removeTask(button, index, project){
     button.addEventListener('click', ()=>{
         console.log(index)
-        //take out index from project array and reload content
-        //need to figure out how to get the project to call content load
+        project.removeTask(index)
+        list.saveProjectList()
+        //confirmation modal would be nice
     })
 }
 
