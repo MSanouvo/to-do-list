@@ -2,7 +2,7 @@ import { contentLoad } from "./content"
 
 //module for our tasks and task related functions
 class Task{
-    constructor(name, dueDate, description, completed = false, priority = 0){
+    constructor(name, dueDate, description, priority = 0, completed = false ){
         this.name = name
         this.dueDate = dueDate
         this.description = description
@@ -32,10 +32,11 @@ function updateTask(task){
     const changeDueDate = (newDueDate) => task.dueDate = newDueDate
     const isComplete = () => task.completed = true
     const isIncomplete = () => task.completed = false
-    const raisePriority = () => task.priority +=1
-    const lowerPriority = () => task.priority -=1
+    const changePriority = (newPriority) => task.priority = newPriority
+    // const raisePriority = () => task.priority +=1
+    // const lowerPriority = () => task.priority -=1
 
-    return {changeName, changeDescription, changeDueDate, isComplete, isIncomplete, raisePriority, lowerPriority}
+    return {changeName, changeDescription, changeDueDate, isComplete, isIncomplete, changePriority}
 }
 
 function sortTasks(array){

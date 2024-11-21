@@ -201,6 +201,7 @@ function editTask(task, project){
     const editName = document.querySelector('#edit_name')
     const editDate = document.querySelector('#edit_date')
     const editDescription = document.querySelector('#edit_description')
+    const editPriority = document.querySelector('#edit_priority')
     const modal = document.querySelector('#edit-task-form')
     const submit = document.querySelector('#submit-edit')
 
@@ -209,6 +210,7 @@ function editTask(task, project){
         taskEdit.changeName(editName.value)
         taskEdit.changeDueDate(editDate.value)
         taskEdit.changeDescription(editDescription.value)
+        taskEdit.changePriority(editPriority.value)
         console.log(task)
         modal.close()
         saveProjectState(project)
@@ -256,7 +258,7 @@ function createTaskElements(newTask, index, project){
     const taskCard = document.createElement('div')
     taskCard.classList.add('task-card')
     taskCard.setAttribute('data-index-number', index)
-    console.log(taskCard.dataset.indexNumber)
+    //console.log(taskCard.dataset.indexNumber)
     const taskInfo = document.createElement('div')
     taskInfo.classList.add('task-info')
     taskInfo.value = 1
@@ -373,15 +375,15 @@ function removeTask(index, project){
 function markComplete(button, task, project){
     let completionUpdate = updateTask(task)
     button.addEventListener('click', ()=>{
-        console.log(task)
+        //console.log(task)
         if(task.completed === false){
             completionUpdate.isComplete()
-            console.log(task)
+            //console.log(task)
             button.checked = true
             saveProjectState(project)
         }else{
             completionUpdate.isIncomplete()
-            console.log(task)
+            //console.log(task)
             button.checked = false
             saveProjectState(project)
         }
@@ -394,13 +396,14 @@ function addTask(){
     const taskName = document.querySelector('#task_name')
     const dueDate = document.querySelector('#due_date')
     const taskDescription = document.querySelector('#task_description')
+    const taskPriority = document.querySelector('#task_priority')
 
     //create task
     let name = taskName.value
     let date = dueDate.value
     let description = taskDescription.value
-    const task = new Task(name, date, description)
-    //task.saveTask()
+    let priority = taskPriority.value
+    const task = new Task(name, date, description, priority)
     console.log(task)
     
     //IMPORTANT
@@ -426,6 +429,7 @@ function removeItemMessage(item){
     const message = document.querySelector('#remove-message')
     message.textContent = "Are you sure you want to remove "+item+"?"
 }
+
 
 
 export {contentLoad, loadProject, submitTask, submitProject, resetContent}
