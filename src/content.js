@@ -39,6 +39,12 @@ function loadProject(project){
     projectButtons.appendChild(deleteProject)
     addSortList(content, project)
 
+    //Remove Dialog for task
+    const confirmationModal = document.querySelector('#remove-confirmation')
+    const confirmationButtons = document.querySelector('#remove-buttons')
+    removeItemMessage(project.name)
+    let switchOn = null
+
     //add each task to our content div
     for(let i = 0; i<tasks; i++){
         createTaskElements(project.array[i], i, project)
@@ -48,7 +54,29 @@ function loadProject(project){
 
     deleteProject.addEventListener('click', ()=>{
         console.log('buzz')
-        list.removeProject(project)
+        switchOn = project.value
+        console.log(switchOn)
+        confirmationModal.showModal()
+    })
+
+    
+    confirmationButtons.addEventListener('click', (event)=>{
+        let target = event.target
+        if(switchOn != null){
+            switch(target.id){
+                case 'yes':
+                    console.log('zzz')
+                    list.removeProject(project)
+                    confirmationModal.close()
+                    loadNavList(list)
+                    switchOn = null
+                    break
+                case 'no':
+                    confirmationModal.close()
+                    switchOn = null
+                    break
+            } 
+        }      
     })
 
     
@@ -247,8 +275,7 @@ function submitProject(){
 
 //function used to create DOM elements for content
 function createTaskElements(newTask, index, project){
-    //console.log(project)
-    //console.log("is Task Class? " + (newTask instanceof Task)) //Check if new tasks are actual task objects
+    
     //Content elements
     const content = document.querySelector('#content')
     const taskCard = document.createElement('div')

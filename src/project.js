@@ -6,12 +6,11 @@ class Project{
     constructor(arrayName, array = []){
         this.name = arrayName
         this.array = array
+        this.value = 0
     }
 
     addToArray(task){
-        // task.saveTask()
         this.array.push(task)
-        //this.saveProject()
     }
     //mostly used for testing
     showArray(){
@@ -33,10 +32,13 @@ class Project{
     renameProject(newName){
         this.name = newName
     }
+    setValue(value){
+        this.value = value
+    }
 }
 
 function projectList(){
-    const projects = []
+    let projects = []
     const addProjectToArray = (project) =>{
         projects.push(project)
         //project.saveProject()
@@ -51,8 +53,7 @@ function projectList(){
         for(let i=0; i<projects.length; i++){
             if(projects[i].name === project_name){
                 projects[i].addToArray(task)
-                //projects[i].saveProject()
-                //load project with new task
+
                 loadProject(projects[i])
                 saveProjectList()
             }
@@ -60,19 +61,22 @@ function projectList(){
     }
 
     const removeProject = (project) =>{
+        console.log(projects.length)
+        let filteredArray = []
         for(let i=0; i<projects.length; i++){
-            if(projects[i]. name === project.name){
-                let removedProject = project
-                console.log(removedProject)
-                //projects.splice(project)
+            if(projects[i].name != project.name){
+                filteredArray.push(projects[i])
             }
         }
+        projects = filteredArray
+        console.log(filteredArray)
+        saveProjectList()
+        loadProject(projects[0])
     }
     const showProjects = () => console.log(projects)
     const saveProjectList = () => localStorage.setItem('list', JSON.stringify(projects))
 
     return {showProjects, addProjectToArray, addTasktoProject, getProjects, saveProjectList, removeProject}
 }
-
 
 export{Project, projectList}

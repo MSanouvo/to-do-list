@@ -1,10 +1,13 @@
 //Module for nav bar elements
 import { contentLoad, submitProject, submitTask, resetContent } from "./content"
-function addGroupToList(project){
+function addGroupToList(project, index){
     const groupList = document.querySelector('#group-list')
     const newGroup = document.createElement('li')
     newGroup.textContent = project.name
     newGroup.classList.add('group')
+    project.setValue(index)
+    console.log(project.value)
+    console.log(project)
 
     const taskGroup = document.querySelector('#task_group')
     const groupOption = document.createElement('option')
@@ -24,9 +27,9 @@ function loadNavList(list){
     //loop through main project array and use above function for each project
     const groupList = document.querySelector('#group-list')
     resetContent(groupList)
+    const taskGroup = document.querySelector('#task_group')
+    resetContent(taskGroup)
 
-    // ADD REMOVE PROJECT FUNCTION SOMEWHERE IN HERE, MAKE SURE IT DOESN'T FIRE MULTIPLE TIMES I DON'T WANT MY PROJECT DELETED
-    // MAYBE ADD THIS FUNCTIONALITY LAST
 
     groupList.addEventListener('click', (e)=>{
         console.log(e.target.textContent)
@@ -39,10 +42,9 @@ function loadNavList(list){
         }
     }) 
     
-    list.getProjects().forEach(element => {
-        addGroupToList(element)
-        
-    });  
+    for(let i=0; i<list.getProjects().length; i++){
+        addGroupToList(list.getProjects()[i], i)
+    }
 }
 
 export{loadNavList}
