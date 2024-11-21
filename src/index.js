@@ -28,5 +28,3 @@ loadNavList(list)
 submitTask()
 submitProject()
 
-
-

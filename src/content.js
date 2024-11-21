@@ -46,13 +46,9 @@ function loadProject(project){
 
     openProjectEdit(renameTitle, project)
 
-    renameTitle.addEventListener('click', ()=>{
-        console.log('fizz')
-        
-    })
-
     deleteProject.addEventListener('click', ()=>{
         console.log('buzz')
+        list.removeProject(project)
     })
 
     

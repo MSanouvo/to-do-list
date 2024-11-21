@@ -59,19 +59,19 @@ function projectList(){
         }
     }
 
-    const removeTaskFromProject = (project, index) =>{
+    const removeProject = (project) =>{
         for(let i=0; i<projects.length; i++){
-            if(projects[i].name === project.name){
-                for(let k=0; k<project.length;k++){
-
-                }
+            if(projects[i]. name === project.name){
+                let removedProject = project
+                console.log(removedProject)
+                //projects.splice(project)
             }
         }
     }
     const showProjects = () => console.log(projects)
     const saveProjectList = () => localStorage.setItem('list', JSON.stringify(projects))
 
-    return {showProjects, addProjectToArray, addTasktoProject, getProjects, saveProjectList}
+    return {showProjects, addProjectToArray, addTasktoProject, getProjects, saveProjectList, removeProject}
 }
 
 
