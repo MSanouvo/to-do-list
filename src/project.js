@@ -29,6 +29,10 @@ class Project{
         console.log(this.array[index])
         this.array.splice(index, 1)
     }
+
+    renameProject(newName){
+        this.name = newName
+    }
 }
 
 function projectList(){

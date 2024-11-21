@@ -28,6 +28,7 @@
             </div> -->
         </div>
     </div>
+
     <dialog id="task-form">
         <form class="input-modal" action="">
             <span class="form-header">New Task</span>
@@ -44,6 +45,13 @@
                 <select name="task_group" id="task_group">
                 </select>
             </div>
+            <div id="priority-set" class="form-input">
+                <span>Priority</span>
+                <div id="priority-button">
+                    <button id="minus">-</button>
+                    <button id="plus">+</button>
+                </div>
+            </div>
             <div class="form-input">
                 <label for="task_description">Description:</label>
                 <textarea rows="5" cols="20" name="task_description" id="task_description"></textarea>
@@ -52,9 +60,10 @@
             <button id="submit_task" type="button">submit</button>
         </form>
     </dialog>
+
     <dialog id="project-form">
         <form class="input-modal" action="">
-            <span id="project-head" class="form-header"></span>
+            <span id="project-head" class="form-header">New Project</span>
             <div class="form-input">
                 <label for="project_name">Project Name:</label>
                 <input type="text" id="project_name" name="project_name">
@@ -62,6 +71,7 @@
             <button id="submit_project" type="button">submit</button>
         </form>
     </dialog>
+
     <dialog id="edit-task-form">
         <form class="input-modal" action="">
             <span class="form-header">Edit Task</span>
@@ -73,14 +83,32 @@
                 <label for="due_date">Due by:</label>
                 <input type="text" id="edit_date" name="edit_date">
             </div>
+            <div id="edit-priority-set" class="form-input">
+                <span>Priority</span>
+                <div id="priority-button">
+                    <button id="edit_minus">-</button>
+                    <button id="edit_plus">+</button>
+                </div>
+            </div>
             <div class="form-input">
                 <label for="task_description">Description:</label>
                 <textarea rows="5" cols="20" name="edit_description" id="edit_description"></textarea>
             </div>
-            
             <button id="submit-edit" type="button">submit</button>
         </form>
     </dialog>
+
+    <dialog id="edit-project-form">
+        <form class="input-modal" action="">
+            <span id="edit-project-head" class="form-header">Rename Project</span>
+            <div class="form-input">
+                <label for="project_name">Project Name:</label>
+                <input type="text" id="edit_project_name" name="edit_project_name">
+            </div>
+            <button id="edit_submit_project" type="button">submit</button>
+        </form>
+    </dialog>
+
     <dialog id="remove-confirmation">
         <div id="remove-modal">
             <span id="remove-message"></span>

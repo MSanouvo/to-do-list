@@ -1,5 +1,5 @@
 //Module for nav bar elements
-import { contentLoad, submitProject, submitTask } from "./content"
+import { contentLoad, submitProject, submitTask, resetContent } from "./content"
 function addGroupToList(project){
     const groupList = document.querySelector('#group-list')
     const newGroup = document.createElement('li')
@@ -23,6 +23,7 @@ function loadNavList(list){
     //dynamically generate projects in navbar based on the list of projects
     //loop through main project array and use above function for each project
     const groupList = document.querySelector('#group-list')
+    resetContent(groupList)
 
     // ADD REMOVE PROJECT FUNCTION SOMEWHERE IN HERE, MAKE SURE IT DOESN'T FIRE MULTIPLE TIMES I DON'T WANT MY PROJECT DELETED
     // MAYBE ADD THIS FUNCTIONALITY LAST
