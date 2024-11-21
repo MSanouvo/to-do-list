@@ -24,6 +24,9 @@ function loadNavList(list){
     //loop through main project array and use above function for each project
     const groupList = document.querySelector('#group-list')
 
+    // ADD REMOVE PROJECT FUNCTION SOMEWHERE IN HERE, MAKE SURE IT DOESN'T FIRE MULTIPLE TIMES I DON'T WANT MY PROJECT DELETED
+    // MAYBE ADD THIS FUNCTIONALITY LAST
+
     groupList.addEventListener('click', (e)=>{
         console.log(e.target.textContent)
         let target = e.target.textContent

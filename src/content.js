@@ -17,18 +17,54 @@ function loadProject(project){
     let tasks = project.array.length
     const content = document.querySelector('#content')
     resetContent(content)//reset DOM before adding elements
+    const titleDiv = document.createElement('div')
+    titleDiv.classList.add('header-div')
     const title = document.createElement('span')
     title.classList.add('group-header')
     title.textContent = project.name
     title.setAttribute('id', project.name)
+    const projectButtons = document.createElement('div')
+    projectButtons.classList.add('header-buttons')
+    const renameTitle = document.createElement('button')
+    renameTitle.textContent = 'Rename Project'
+    const deleteProject = document.createElement('button')
+    deleteProject.setAttribute('id', 'delete')
+    deleteProject.textContent = "Delete Project"
+    const submitEdit = document.querySelector('#submit_project')
     
-    content.appendChild(title)
+    content.appendChild(titleDiv)
+    titleDiv.appendChild(title)
+    titleDiv.appendChild(projectButtons)
+    projectButtons.appendChild(renameTitle)
+    projectButtons.appendChild(deleteProject)
     addSortList(content, project)
 
     //add each task to our content div
     for(let i = 0; i<tasks; i++){
         createTaskElements(project.array[i], i, project)
     }
+
+    //renameProjectForm(renameTitle)
+    renameTitle.addEventListener('click', ()=>{
+        console.log('fizz')
+        
+    })
+
+    deleteProject.addEventListener('click', ()=>{
+        console.log('buzz')
+        //console.log(projectName)
+    })
+
+    // submitEdit.addEventListener('click', ()=>{
+        
+    // })
+
+    // Need to create a separate form or change how the new project function is called
+    // const newProjectName = document.querySelector('#project_name')
+    // const projectName = document.querySelector('#'+project.name)
+    // let name = newProjectName.value
+
+    
 }
 
 function addSortList(parent, project){
@@ -103,10 +139,27 @@ function openTaskForm(){
         }
     })
 }
+function renameProjectForm(button){
+    const projectForm = document.querySelector('#project-form')
+    const formHead = document.querySelector('#project-head')
+    formHead.textContent = 'Rename Project'
+    button.addEventListener('click', ()=>{
+        projectForm.showModal()
+        
+    })
+
+    projectForm.addEventListener('click', (e)=>{
+        if(e.target === projectForm){
+            projectForm.close()
+        }
+    })
+}
 
 function openProjectForm(){
     const projectForm = document.querySelector('#project-form')
     const modalButton = document.querySelector('#open-project-modal')
+    const formHead = document.querySelector('#project-head')
+    formHead.textContent = 'New Project'
     modalButton.addEventListener('click', ()=>{
         projectForm.showModal()
         
@@ -370,5 +423,6 @@ function removeItemMessage(item){
     const message = document.querySelector('#remove-message')
     message.textContent = "Are you sure you want to remove "+item+"?"
 }
+
 
 export {contentLoad, loadProject, submitTask, submitProject}

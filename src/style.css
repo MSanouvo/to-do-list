@@ -171,3 +171,27 @@ body{
 .buttons{
     height: 30px;
 }
+
+
+/* established layout for project buttons, can improve on later */
+.header-buttons{
+    display: grid;
+    gap: 5px;
+}
+
+.header-buttons>button{
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    justify-self: end;
+    padding: 5px;
+}
+
+#delete{
+    background-color: rgba(255, 0, 0, 0.671);
+}
+
+.header-div{
+    display: flex;
+    justify-content: space-between;
+}
