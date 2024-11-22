@@ -5,16 +5,17 @@ import { loadNavList } from "./navbar-list";
 
 //Module for loading and creating new content
 
-function contentLoad(project){
+function contentLoad(project, array){
     //load a given group of tasks
     loadProject(project)
+    generateTaskCard(project, array)
     //form functionality
     openTaskForm()
     openProjectForm()
 }
 
 function loadProject(project){
-    let tasks = project.array.length
+    //let tasks = project.array.length
     const content = document.querySelector('#content')
     resetContent(content)//reset DOM before adding elements
     const titleDiv = document.createElement('div')
@@ -46,9 +47,10 @@ function loadProject(project){
     let switchOn = null
 
     //add each task to our content div
-    for(let i = 0; i<tasks; i++){
-        createTaskElements(project.array[i], i, project)
-    }
+    //generateTaskCard(project.array, project)
+    // for(let i = 0; i<tasks; i++){
+    //     createTaskElements(project.array[i], i, project)
+    // }
 
     openProjectEdit(renameTitle, project)
 
@@ -78,9 +80,15 @@ function loadProject(project){
             } 
         }      
     })
-
-    
 }
+
+function generateTaskCard(project, array){
+    let tasks = array.length
+    for(let i = 0; i<tasks; i++){
+        createTaskElements(array[i], i, project)
+    }
+}
+
 
 function addSortList(parent, project){
     const sortDiv = document.createElement('div')
@@ -93,32 +101,75 @@ function addSortList(parent, project){
     //options
     const sortRecent = document.createElement('option')
     sortRecent.textContent = 'by Recent'
+    sortRecent.setAttribute('id', 'recent')
+    sortRecent.value = "Recent"
     const sortOldest = document.createElement('option')
     sortOldest.textContent = 'by Oldest'
+    sortOldest.setAttribute('id', 'oldest')
+    sortOldest.value = 'Oldest'
     const sortName = document.createElement('option')
     sortName.textContent = 'by Name'
-    const sortPriorty = document.createElement('option')
-    sortPriorty.textContent = 'by Priorty'
+    sortName.setAttribute('id', 'by_name')
+    sortName.value = "Name"
+    const sortPriority = document.createElement('option')
+    sortPriority.textContent = 'by Priorty'
+    sortPriority.setAttribute('id', 'by_priority')
+    sortPriority.value = "Priority"
     const sortDate = document.createElement('option')
     sortDate.textContent = 'by Date'
+    sortDate.setAttribute('id', 'by_date')
+    sortDate.value = 'Date'
+    const sortIncompleted = document.createElement('option')
+    sortIncompleted.textContent = 'by Incomplete'
+    sortIncompleted.setAttribute('id', 'by_incomplete')
+    sortIncompleted.value = 'Incomplete'
+    const placeholder = document.createElement('option')
+    placeholder.textContent = 'Select'
 
     //sort options
+    sort.appendChild(placeholder)
     sort.appendChild(sortOldest)
     sort.appendChild(sortRecent)
     sort.appendChild(sortName)
-    sort.appendChild(sortPriorty)
+    sort.appendChild(sortPriority)
+    sort.appendChild(sortIncompleted)
 
     //load content
     parent.appendChild(sortDiv)
     sortDiv.appendChild(sortLable)
     sortDiv.appendChild(sort)
 
-    //figure out sorting features later
-    // //for sorting functions
-    // let sortedProject = sortTasks(project)
+    // figure out sorting features later
+    //for sorting functions
+    let sortedProject = sortTasks(project)
+
+    sort.addEventListener('click', (e)=>{
+        let target = e.target
+        switch(target.value){
+            case 'Oldest':
+                console.log('fizz')
+                sortedProject.oldestArray()
+                break
+            case 'Recent':
+                console.log('buzz')
+                sortedProject.recentArray()
+                break
+            case 'Name':
+                console.log('hmm')
+                sortedProject.sortedName()
+                break
+            case 'Priority':
+                console.log('hrrr')
+                sortedProject.rankedPriority()
+                break
+            case 'Incomplete':
+                sortedProject.sortIncomplete()
+                break
+        }
+    })
     // sortRecent.addEventListener('click', ()=>{
-    //     sortedProject.recentArray()
-    //     console.log(project)
+    //     //sortedProject.recentArray()
+    //     console.log('zzz')
     // })
     // sortOldest.addEventListener('click', ()=>{
     //     // sortedProject.recentArray()
@@ -126,11 +177,11 @@ function addSortList(parent, project){
     // })
     // sortName.addEventListener('click', ()=>{
     //     sortedProject.sortedName()
-    //     console.log(project)
+    //     console.log('bzzz')
     // })
-    // sortPriorty.addEventListener('click', ()=>{
+    // sortPriority.addEventListener('click', ()=>{
     //     sortedProject.sortPriorty
-    //     console.log(project)
+    //     console.log('ozzzz')
     // })
     // sortDate
 }
@@ -174,6 +225,7 @@ function openEditForm(button, task, project){
     const editForm = document.querySelector('#edit-task-form')
     const taskName = document.querySelector('#edit_name')
     const taskDate = document.querySelector('#edit_date')
+    const taskPrio = document.querySelector('#edit_priority')
     const taskDescription = document.querySelector('#edit_description')
     
 
@@ -182,6 +234,7 @@ function openEditForm(button, task, project){
         console.log(task)
         taskName.value = task.name
         taskDate.value = task.dueDate
+        taskPrio.value = task.priority
         taskDescription.value = task.description
         editTask(task, project)
     })
@@ -444,7 +497,7 @@ function createProject(){
 
 function saveProjectState(project){
     list.saveProjectList()
-    contentLoad(project)
+    contentLoad(project, project.array)
     loadNavList(list)
 }
 
@@ -455,4 +508,4 @@ function removeItemMessage(item){
 
 
 
-export {contentLoad, loadProject, submitTask, submitProject, resetContent}
+export {contentLoad, loadProject, submitTask, submitProject, resetContent, generateTaskCard}

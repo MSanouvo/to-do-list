@@ -1,4 +1,4 @@
-import { contentLoad } from "./content"
+import { contentLoad, generateTaskCard, resetContent } from "./content"
 
 //module for our tasks and task related functions
 class Task{
@@ -39,29 +39,34 @@ function updateTask(task){
     return {changeName, changeDescription, changeDueDate, isComplete, isIncomplete, changePriority}
 }
 
-function sortTasks(array){
+function sortTasks(project){
+    const content = document.querySelector('#content')
     //sort in descending order (greatest -> least prio)
-    const recentArray = () => contentLoad(array)
+    const oldestArray = () => contentLoad(project, project.array)
+
+    const recentArray = () => contentLoad(project, project.array.reverse())
     const rankedPriority = () => {
-        let rankedCopy = [...array]
+        let rankedCopy = [...project.array]
         let rankedArray = rankedCopy.sort((a, b) => b.priority - a.priority)
         console.log(rankedArray)
-        contentLoad(rankedArray)
+        resetContent(content)
+        //generateTaskCard(rankedArray, array)
+        contentLoad(project, rankedArray)
     }
     //sort tasks alphabetically
     const sortedName = () =>{
-        let namedCopy = [...array]
+        let namedCopy = [...project.array]
         let sortedArray = namedCopy.sort((a, b) => {
-            if(a.name < b.name){
+            if(a.name.toLowerCase() < b.name.toLowerCase()){
                 return -1
             }
-            if(a.name > b.name){
+            if(a.name.toLowerCase() > b.name.toLowerCase()){
                 return 1
             }
             return 0
         })
         console.log(sortedArray)
-        contentLoad(sortedArray)
+        contentLoad(project, sortedArray)
     }
 
     const byDate = () =>{
@@ -72,7 +77,7 @@ function sortTasks(array){
     }
     //puts incomplete tasks at the top of the list
     const sortIncomplete = () =>{
-        let incompleteCopy = [...array]
+        let incompleteCopy = [...project.array]
         let sortIncomplete = incompleteCopy.sort((a) =>{
             if(a.completed === false){
                 return -1
@@ -80,9 +85,9 @@ function sortTasks(array){
             return 1
         })
         console.log(sortIncomplete)
-        contentLoad(sortIncomplete)
+        contentLoad(project, sortIncomplete)
     }
-    return{rankedPriority, sortedName, sortIncomplete, recentArray}
+    return{rankedPriority, sortedName, sortIncomplete, oldestArray, recentArray}
 }
 
 export {Task, updateTask, sortTasks}

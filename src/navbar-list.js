@@ -6,8 +6,8 @@ function addGroupToList(project, index){
     newGroup.textContent = project.name
     newGroup.classList.add('group')
     project.setValue(index)
-    console.log(project.value)
-    console.log(project)
+    // console.log(project.value)
+    // console.log(project)
 
     const taskGroup = document.querySelector('#task_group')
     const groupOption = document.createElement('option')
@@ -37,7 +37,7 @@ function loadNavList(list){
         const listArray = list.getProjects()
         for(let i=0; i<listArray.length; i++){
             if(listArray[i].name === target){
-                contentLoad(listArray[i])
+                contentLoad(listArray[i], listArray[i].array)
             }
         }
     }) 

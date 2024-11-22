@@ -32,7 +32,7 @@ function makeProjects(array){
         starter.push(newProject)
     }
     //Initialize our DOM content assuming localstorage is populated
-    contentLoad(starter[0])
+    contentLoad(starter[0], starter[0].array)
 }
 
 function loadJSONProjects(project){

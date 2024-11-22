@@ -54,7 +54,7 @@ function projectList(){
             if(projects[i].name === project_name){
                 projects[i].addToArray(task)
 
-                loadProject(projects[i])
+                contentLoad(projects[i], projects[i].array)
                 saveProjectList()
             }
         }
