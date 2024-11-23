@@ -8,7 +8,10 @@ import { loadNavList } from "./navbar-list";
 function contentLoad(project, array){
     //load a given group of tasks
     loadProject(project)
-    generateTaskCard(project, array)
+    console.log(array)
+    if(array != undefined){
+        generateTaskCard(project, array)
+    }
     //form functionality
     openTaskForm()
     openProjectForm()
@@ -38,8 +41,10 @@ function loadProject(project){
     content.appendChild(titleDiv)
     titleDiv.appendChild(title)
     titleDiv.appendChild(projectButtons)
-    projectButtons.appendChild(renameTitle)
-    projectButtons.appendChild(deleteProject)
+    if(project.name != 'General'){
+        projectButtons.appendChild(renameTitle)
+        projectButtons.appendChild(deleteProject)
+    }
     addSortList(content, project)
 
     //Remove Dialog for task

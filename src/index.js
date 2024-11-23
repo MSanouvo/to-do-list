@@ -18,10 +18,21 @@ export const list = projectList()
 // list.addProjectToArray(general)
 // contentLoad(general)
 // else
-const localList = localStorage.getItem('list')
-const masterList = checkLocalStorage(localList)
-makeProjects(masterList)
 
+initializeList()
+
+function initializeList(){
+    if(localStorage.length === 0){
+        const general = new Project ('General')
+        list.addProjectToArray(general)
+        contentLoad(general)
+    } else{
+        const localList = localStorage.getItem('list')
+        const masterList = checkLocalStorage(localList)
+        makeProjects(masterList)
+    }
+    
+}
 
 //load DOMs content
 loadNavList(list)
