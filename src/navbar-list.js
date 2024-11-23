@@ -32,7 +32,7 @@ function loadNavList(list){
 
 
     groupList.addEventListener('click', (e)=>{
-        console.log(e.target.textContent)
+        //console.log(e.target.textContent)
         let target = e.target.textContent
         const listArray = list.getProjects()
         for(let i=0; i<listArray.length; i++){

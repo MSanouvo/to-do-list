@@ -58,4 +58,18 @@ function loadJSONProjects(project){
     return newProject
 }
 
-export {checkLocalStorage, makeProjects}
+function initializeList(){
+    if(localStorage.length === 0){
+        const general = new Project ('General')
+        list.addProjectToArray(general)
+        contentLoad(general)
+    } else{
+        const localList = localStorage.getItem('list')
+        const masterList = checkLocalStorage(localList)
+        makeProjects(masterList)
+    }
+    
+}
+
+
+export {checkLocalStorage, makeProjects, initializeList}

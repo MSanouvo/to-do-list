@@ -8,7 +8,7 @@ import { loadNavList } from "./navbar-list";
 function contentLoad(project, array){
     //load a given group of tasks
     loadProject(project)
-    console.log(array)
+    //console.log(array)
     if(array != undefined){
         generateTaskCard(project, array)
     }
@@ -258,8 +258,13 @@ function editProject(project, modal){
             return
         }
         //console.log(newProjectName.value)
-        project.renameProject(newProjectName.value)
-        saveProjectState(project)
+        let name = newProjectName.value
+        if(name === 'General'){
+            alert('Name already in use. Please use another name.')
+        } else{
+            project.renameProject(name)
+            saveProjectState(project)
+        }  
         modal.close()
     },{once:true})
 }
@@ -496,9 +501,13 @@ function createProject(){
     const projectName = document.querySelector('#project_name')
 
     let name = projectName.value
-    const project = new Project(name)
-    list.addProjectToArray(project)
-    console.log(list.getProjects())
+    if(name === 'General'){
+        alert('Name already in use. Please use another name.')
+    } else{
+        const project = new Project(name)
+        list.addProjectToArray(project)
+    }  
+    //console.log(list.getProjects())
 }
 
 function saveProjectState(project){

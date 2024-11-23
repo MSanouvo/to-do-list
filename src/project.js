@@ -63,7 +63,7 @@ function projectList(){
     const removeProject = (project) =>{
         console.log(projects.length)
         let filteredArray = []
-        for(let i=1; i<projects.length; i++){
+        for(let i=0; i<projects.length; i++){
             if(projects[i].name != project.name){
                 filteredArray.push(projects[i])
             }
