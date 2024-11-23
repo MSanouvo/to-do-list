@@ -299,12 +299,12 @@ function editTask(task, project){
 function submitTask(){
     const taskModal = document.querySelector('#task-form')
     const submit = document.querySelector('#submit_task')
-    const form = document.querySelector('#task-input')
+    const taskForm = document.querySelector('#task-input')
     
     const selectOption = document.querySelector('#task_group')
     submit.addEventListener('click', ()=>{
-        if(!form.checkValidity()){
-            form.reportValidity()
+        if(!taskForm.checkValidity()){
+            taskForm.reportValidity()
             return
         }
 
@@ -312,6 +312,7 @@ function submitTask(){
         let newTask = addTask()
         list.addTasktoProject(selectOption.value, newTask)
         //console.log(list.getProjects())
+        taskForm.reset()
         taskModal.close()
     })
 }
@@ -333,6 +334,7 @@ function submitProject(){
         resetContent(projectGroupList)
         resetContent(taskGroupOptions)
         loadNavList(list)
+        projectForm.reset()
         projectModal.close()
     })
 }
@@ -518,7 +520,7 @@ function saveProjectState(project){
 
 function removeItemMessage(item){
     const message = document.querySelector('#remove-message')
-    message.textContent = "Are you sure you want to remove "+item+"?"
+    message.textContent = 'Are you sure you want to remove "'+item+'" ?'
 }
 
 

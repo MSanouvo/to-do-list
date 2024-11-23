@@ -6,7 +6,7 @@ body{
     font-family: 'Courier New', Courier, monospace;
 }
 
-/* nav bar */
+/* --------------- nav bar ---------------- */
 #nav-bar{
     background-color: rgb(175, 238, 208);
     height: 100vh;
@@ -60,7 +60,7 @@ body{
     margin: 0 30px;
 }
 
-/* dialog box */
+/* ----------------- dialog box ----------------*/
 .input-modal{
     height: 300px;
     width: 400px;
@@ -94,7 +94,64 @@ body{
     height: 30px;
 }
 
-/* Content */
+input:invalid{
+    border: 1px solid rgb(255, 0, 0);
+    border-radius: 2px;
+}
+
+textarea{
+    resize: none;
+}
+
+#submit_project,
+#submit_task,
+#submit-edit,
+#edit_submit_project{
+    justify-self: center;
+    align-self: center;
+    height: 30px;
+    width: 120px;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/* ---- Confirmation Modal ---- */
+#remove-confirmation{
+    border-radius: 5px;
+}
+#remove-modal{
+    height: 200px;
+    width: 300px;
+    display: grid;
+    grid-template-rows: 150px 50px;
+    padding: 10px;
+}
+#remove-message{
+    align-self: center;
+    /* border: 1px solid black; */
+    font-size: 1.2rem;
+    padding: 10px;
+}
+
+#remove-buttons>button{
+    height: 30px;
+    width: 80px;
+    font-weight: bold;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+#yes{
+    background-color: rgb(255, 72, 72);
+}
+
+#remove-buttons,
+#remove-message{
+    justify-self: center;
+}
+
+
+/* ------------------ Content ----------------- */
 #content-container{
     padding: 20px;
     width: 80vw;
@@ -132,7 +189,7 @@ body{
 }
 
 .group-header{
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: bold;
 }
 
@@ -150,7 +207,7 @@ body{
 .task-info{
     height: 50px;
     display: grid;
-    grid-template-columns: 175px 100px 175px 140px 1fr;
+    grid-template-columns: 175px 120px 150px 140px 1fr;
     /* display: flex;
     align-items: center;
     justify-content: space-evenly; */
@@ -182,8 +239,17 @@ body{
     gap: 20px;
 }
 
+#remove{
+    background-color: rgb(255, 72, 72);
+    border: 1px solid rgb(31, 31, 31);
+}
+
 .buttons{
     height: 30px;
+    width: 110px;
+    font-weight: bold;
+    border-radius: 5px;
+    border: 1px solid grey;
 }
 
 
@@ -199,10 +265,11 @@ body{
     font-weight: bold;
     justify-self: end;
     padding: 5px;
+    background-color: rgb(202, 202, 202);
 }
 
 #delete{
-    background-color: rgba(255, 0, 0, 0.671);
+    background-color: rgb(255, 72, 72);
 }
 
 .header-div{
@@ -210,6 +277,3 @@ body{
     justify-content: space-between;
 }
 
-input:invalid{
-    border: 1px solid rgb(197, 0, 0);
-}
