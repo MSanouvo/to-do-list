@@ -15,7 +15,9 @@ function contentLoad(project, array){
 }
 
 function loadProject(project){
-    //let tasks = project.array.length
+    //Adds Header of Project, and functions associated to this
+    //specific project (rename, delete, sort, etc.)
+
     const content = document.querySelector('#content')
     resetContent(content)//reset DOM before adding elements
     const titleDiv = document.createElement('div')
@@ -46,14 +48,9 @@ function loadProject(project){
     removeItemMessage(project.name)
     let switchOn = null
 
-    //add each task to our content div
-    //generateTaskCard(project.array, project)
-    // for(let i = 0; i<tasks; i++){
-    //     createTaskElements(project.array[i], i, project)
-    // }
-
     openProjectEdit(renameTitle, project)
 
+    //Events for deleting project
     deleteProject.addEventListener('click', ()=>{
         console.log('buzz')
         switchOn = project.value
@@ -61,7 +58,6 @@ function loadProject(project){
         confirmationModal.showModal()
     })
 
-    
     confirmationButtons.addEventListener('click', (event)=>{
         let target = event.target
         if(switchOn != null){
@@ -167,23 +163,6 @@ function addSortList(parent, project){
                 break
         }
     })
-    // sortRecent.addEventListener('click', ()=>{
-    //     //sortedProject.recentArray()
-    //     console.log('zzz')
-    // })
-    // sortOldest.addEventListener('click', ()=>{
-    //     // sortedProject.recentArray()
-    //     // console.log(project)
-    // })
-    // sortName.addEventListener('click', ()=>{
-    //     sortedProject.sortedName()
-    //     console.log('bzzz')
-    // })
-    // sortPriority.addEventListener('click', ()=>{
-    //     sortedProject.sortPriorty
-    //     console.log('ozzzz')
-    // })
-    // sortDate
 }
 
 function resetContent(content){
@@ -258,7 +237,7 @@ function openProjectEdit(button, project){
     })
 
     editProjectForm.addEventListener('click', (e)=>{
-        if(e.target === editProject)
+        if(e.target === editProjectForm)
             editProjectForm.close()
     })
 }
@@ -266,7 +245,13 @@ function openProjectEdit(button, project){
 function editProject(project, modal){
     const submitBtn = document.querySelector('#edit_submit_project')
     const newProjectName = document.querySelector('#edit_project_name')
+    const editForm = document.querySelector('#edit-project-input')
+
     submitBtn.addEventListener('click', ()=>{
+        if(!editForm.checkValidity()){
+            editForm.reportValidity()
+            return
+        }
         //console.log(newProjectName.value)
         project.renameProject(newProjectName.value)
         saveProjectState(project)
@@ -281,8 +266,13 @@ function editTask(task, project){
     const editPriority = document.querySelector('#edit_priority')
     const modal = document.querySelector('#edit-task-form')
     const submit = document.querySelector('#submit-edit')
+    const editForm = document.querySelector('#edit-task-input')
 
     submit.addEventListener('click', ()=>{
+        if(!editForm.checkValidity()){
+            editForm.reportValidity()
+            return
+        }
         let taskEdit = updateTask(task)
         taskEdit.changeName(editName.value)
         taskEdit.changeDueDate(editDate.value)
@@ -299,9 +289,15 @@ function editTask(task, project){
 function submitTask(){
     const taskModal = document.querySelector('#task-form')
     const submit = document.querySelector('#submit_task')
+    const form = document.querySelector('#task-input')
     
     const selectOption = document.querySelector('#task_group')
     submit.addEventListener('click', ()=>{
+        if(!form.checkValidity()){
+            form.reportValidity()
+            return
+        }
+
         //create task, add it to specific project
         let newTask = addTask()
         list.addTasktoProject(selectOption.value, newTask)
@@ -315,8 +311,13 @@ function submitProject(){
     const submit = document.querySelector('#submit_project')
     const projectGroupList = document.querySelector('#group-list')
     const taskGroupOptions = document.querySelector('#task_group')
+    const projectForm = document.querySelector('#project-input')
 
     submit.addEventListener('click', ()=>{
+        if(!projectForm.checkValidity()){
+            projectForm.reportValidity()
+            return
+        }
         createProject()
         //reset these because loadNavList is going to append over them
         resetContent(projectGroupList)
@@ -505,7 +506,6 @@ function removeItemMessage(item){
     const message = document.querySelector('#remove-message')
     message.textContent = "Are you sure you want to remove "+item+"?"
 }
-
 
 
 export {contentLoad, loadProject, submitTask, submitProject, resetContent, generateTaskCard}

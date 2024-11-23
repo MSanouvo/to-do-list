@@ -17,27 +17,40 @@ body{
 }
 
 .nav-header{
-    font-size: 2.2rem;
+    font-size: 2.4rem;
     background: none;
     border: none;
     font-weight: bolder;
     height: 100px;
+    text-align: left;
+    padding: 0px;
+    margin: 0 30px;
 }
 
 #group-list{
+    /* background-color: rgb(156, 235, 197); */
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    padding: 0;
+    gap: 20px;
+    padding: 0px;
     margin: 0 30px;
-    border: 1px solid black;
-}
+    /* border: 1px solid black; */
+    max-height: 800px;
+    overflow-y: scroll;
+       /* for some browsers */
+       -ms-overflow-style: none;
+       scrollbar-width: none;
+   }
+   /* hide scrollbar */
+   #group-list::-webkit-scrollbar{
+       display: none;
+   }
 
 .group{
     font-size: 1.5rem;
     font-weight: bold;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     justify-content: left;
 }
 
@@ -137,7 +150,7 @@ body{
 .task-info{
     height: 50px;
     display: grid;
-    grid-template-columns: 125px 125px 200px 140px 1fr;
+    grid-template-columns: 175px 100px 175px 140px 1fr;
     /* display: flex;
     align-items: center;
     justify-content: space-evenly; */
@@ -195,4 +208,8 @@ body{
 .header-div{
     display: flex;
     justify-content: space-between;
+}
+
+input:invalid{
+    border: 1px solid rgb(197, 0, 0);
 }

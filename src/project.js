@@ -71,7 +71,7 @@ function projectList(){
         projects = filteredArray
         console.log(filteredArray)
         saveProjectList()
-        loadProject(projects[0])
+        contentLoad(projects[0], projects[0].array)
     }
     const showProjects = () => console.log(projects)
     const saveProjectList = () => localStorage.setItem('list', JSON.stringify(projects))

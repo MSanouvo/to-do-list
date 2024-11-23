@@ -1,4 +1,4 @@
-import { contentLoad, generateTaskCard, resetContent } from "./content"
+import { contentLoad, resetContent } from "./content"
 
 //module for our tasks and task related functions
 class Task{
@@ -21,9 +21,6 @@ class Task{
         }
     }
 
-    // saveTask(){
-    //     localStorage.setItem(this.name, JSON.stringify(this))
-    // }
 }
 //updates all properties of the task
 function updateTask(task){
@@ -41,16 +38,17 @@ function updateTask(task){
 
 function sortTasks(project){
     const content = document.querySelector('#content')
-    //sort in descending order (greatest -> least prio)
     const oldestArray = () => contentLoad(project, project.array)
-
-    const recentArray = () => contentLoad(project, project.array.reverse())
+    const recentArray = () => {
+        let recentCopy = [...project.array]
+        contentLoad(project, recentCopy.reverse())
+    }
+    //Sorts greated prio and puts at top of list
     const rankedPriority = () => {
         let rankedCopy = [...project.array]
         let rankedArray = rankedCopy.sort((a, b) => b.priority - a.priority)
         console.log(rankedArray)
         resetContent(content)
-        //generateTaskCard(rankedArray, array)
         contentLoad(project, rankedArray)
     }
     //sort tasks alphabetically
