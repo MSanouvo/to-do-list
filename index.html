@@ -15,34 +15,44 @@
         <button class="open-modal" id="open-project-modal"> New Project</button>
     </nav>
     <div id="content-container">
-        <div id="content">
-            <!-- <span class="group-header">title</span>
-            <div class="task-card">
-                <div class="task-info">
-                    <span>test</span>
-                    <span>test</span>
-                </div>
-                <div class="task-description" id="active">
-                    <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. At quas placeat, sapiente nulla tempore quo earum. Debitis quidem architecto, hic, magni earum autem, eum possimus quibusdam similique omnis repudiandae! Temporibus?</span>
-                </div>
-            </div> -->
-        </div>
+        <div id="content"></div>
     </div>
+
     <dialog id="task-form">
-        <form class="input-modal" action="">
+        <form class="input-modal" id="task-input" method="dialog">
             <span class="form-header">New Task</span>
             <div class="form-input">
                 <label for="task_name">Task Name:</label>
-                <input type="text" id="task_name" name="task_name">
+                <input type="text" id="task_name" name="task_name" placeholder="Task Name" required>
             </div>
             <div class="form-input">
                 <label for="due_date">Due by:</label>
-                <input type="text" id="due_date" name="due_date">
+                <input type="date" id="due_date" name="due_date" placeholder="DD-MM-YEAR">
             </div>
             <div class="form-input">
                 <label for="task_group">Task Group:</label>
                 <select name="task_group" id="task_group">
                 </select>
+            </div>
+            <div id="priority-set" class="form-input">
+                <label for="task_priority">Priority</label>
+                <select name="task_priority" id="task_priority">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+                <!-- May or May not be used for future prioirty feature -->
+                <!-- <div id="priority-button">
+                    <button id="minus">-</button>
+                    <button id="plus">+</button>
+                </div> -->
             </div>
             <div class="form-input">
                 <label for="task_description">Description:</label>
@@ -52,34 +62,72 @@
             <button id="submit_task" type="button">submit</button>
         </form>
     </dialog>
+
     <dialog id="project-form">
-        <form class="input-modal" action="">
-            <span class="form-header">New Project</span>
+        <form class="input-modal" id="project-input" action="">
+            <span id="project-head" class="form-header">New Project</span>
             <div class="form-input">
                 <label for="project_name">Project Name:</label>
-                <input type="text" id="project_name" name="project_name">
+                <input type="text" id="project_name" name="project_name" placeholder="Project Name" required>
             </div>
             <button id="submit_project" type="button">submit</button>
         </form>
     </dialog>
+
     <dialog id="edit-task-form">
-        <form class="input-modal" action="">
+        <form class="input-modal" id="edit-task-input" action="">
             <span class="form-header">Edit Task</span>
             <div class="form-input">
                 <label for="task_name">Task Name:</label>
-                <input type="text" id="edit_name" name="edit_name">
+                <input type="text" id="edit_name" name="edit_name" required/>
             </div>
             <div class="form-input">
                 <label for="due_date">Due by:</label>
-                <input type="text" id="edit_date" name="edit_date">
+                <input type="date" id="edit_date" name="edit_date">
+            </div>
+            <div id="edit-priority-set" class="form-input">
+                <span>Prioirty</span>
+                <select name="edit_priority" id="edit_priority">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
             </div>
             <div class="form-input">
                 <label for="task_description">Description:</label>
                 <textarea rows="5" cols="20" name="edit_description" id="edit_description"></textarea>
             </div>
-            
             <button id="submit-edit" type="button">submit</button>
         </form>
+    </dialog>
+
+    <dialog id="edit-project-form">
+        <form class="input-modal" id="edit-project-input" action="">
+            <span id="edit-project-head" class="form-header">Rename Project</span>
+            <div class="form-input">
+                <label for="project_name">Project Name:</label>
+                <input type="text" id="edit_project_name" name="edit_project_name" required>
+            </div>
+            <button id="edit_submit_project" type="button">submit</button>
+        </form>
+    </dialog>
+
+    <dialog id="remove-confirmation">
+        <div id="remove-modal">
+            <span id="remove-message"></span>
+            <div id="remove-buttons">
+                <button id="yes">Yes</button>
+                <button id="no">No</button>
+            </div>
+        </div>
+        
     </dialog>
 </body>
 </html>
