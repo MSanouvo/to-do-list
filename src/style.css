@@ -65,12 +65,12 @@ body{
 
 li:hover{
     /* background-color: rgb(221, 255, 199); */
-    background-image: linear-gradient(to right, rgb(150, 255, 150), white);
+    background-image: linear-gradient(to right, rgb(175, 238, 208), white);
     font-weight: bold;
 }
 
 #active{
-    background-image: linear-gradient(to right, rgb(150, 255, 150), white);
+    background-image: linear-gradient(to right, rgb(175, 238, 208), white);
     font-weight: bold;
 }
 /* ----------------- dialog box ----------------*/
@@ -152,11 +152,21 @@ textarea{
     font-weight: bold;
     font-size: 1rem;
     border-radius: 5px;
+    background-color: rgb(224, 224, 224);
 }
 
-#yes{
+#remove-buttons>button:hover{
+    background-color: rgb(168, 168, 168);
+}
+
+#remove-buttons>#yes{
     background-color: rgb(255, 72, 72);
 }
+
+#remove-buttons>#yes:hover{
+    background-color: rgb(255, 20, 20);
+}
+
 
 #remove-buttons,
 #remove-message{
@@ -249,41 +259,62 @@ textarea{
 .task-buttons{
     justify-self: end;
     display: grid;
-    grid-template-columns: 100px 100px;
+    grid-template-columns: 50px 50px;
     gap: 20px;
 }
 
 #remove{
-    background-color: rgb(255, 72, 72);
-    border: 1px solid rgb(31, 31, 31);
+    border: none;
+    background-image: url(./resources/symbols/delete.svg);
+    background-size: 40px 45px;
 }
 
 .buttons{
-    height: 30px;
-    width: 110px;
-    font-weight: bold;
-    border-radius: 5px;
-    border: 1px solid grey;
+    height: 40px;
+    width: 40px;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    background-image: url(./resources/symbols/edit.svg);
+    background-size: 50px 50px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.buttons:hover{
+    background-color: rgba(167, 165, 165, 0.432);
 }
 
 
 /* established layout for project buttons, can improve on later */
 .header-buttons{
     display: grid;
+    grid-template-columns: 50px 50px;
     gap: 5px;
 }
 
 .header-buttons>button{
     border: none;
+    width: 50px;
+    height: 50px;
     font-size: 1rem;
     font-weight: bold;
     justify-self: end;
     padding: 5px;
-    background-color: rgb(202, 202, 202);
+    background-color: rgba(255, 255, 255, 0);
+    background-image: url(./resources/symbols/edit.svg);
+    background-size: 53px 55px;
+    background-repeat: no-repeat;
 }
 
 #delete{
-    background-color: rgb(255, 72, 72);
+    background-image: url(./resources/symbols/delete.svg);
+    background-size: 40px 40px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.header-buttons>button:hover{
+    background-color: rgba(167, 165, 165, 0.432);
 }
 
 .header-div{

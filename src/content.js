@@ -27,15 +27,15 @@ function loadProject(project){
     titleDiv.classList.add('header-div')
     const title = document.createElement('span')
     title.classList.add('group-header')
-    title.textContent = project.name
+    title.textContent = project.name 
     title.setAttribute('id', project.name)
     const projectButtons = document.createElement('div')
     projectButtons.classList.add('header-buttons')
     const renameTitle = document.createElement('button')
-    renameTitle.textContent = 'Rename Project'
+    // renameTitle.textContent = 'Rename Project'
     const deleteProject = document.createElement('button')
     deleteProject.setAttribute('id', 'delete')
-    deleteProject.textContent = "Delete Project"
+    // deleteProject.textContent = "Delete Project"
     
     
     content.appendChild(titleDiv)
@@ -341,11 +341,11 @@ function createTaskElements(newTask, index, project){
     const buttonDiv = document.createElement('div')
     buttonDiv.classList.add('task-buttons')
     const edit = document.createElement('button')
-    edit.textContent = "Edit Task"
+    // edit.textContent = "Edit Task"
     edit.classList.add('buttons')
     edit.setAttribute('id', 'edit')
     const remove = document.createElement('button')
-    remove.textContent = 'Remove Task'
+    // remove.textContent = 'Remove Task'
     remove.classList.add('buttons')
     remove.setAttribute('id', 'remove')
 
