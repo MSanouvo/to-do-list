@@ -13,10 +13,8 @@ class Task{
     //better than just printing true/false
     checkCompletion(){
         if(this.completed === true){
-            //console.log('Completed!')
             return 'Completed'
         }else{
-            //console.log('Incomplete')
             return 'Incomplete'
         }
     }
@@ -37,7 +35,6 @@ function addTask(){
     let description = taskDescription.value
     let priority = taskPriority.value
     const task = new Task(name, date, description, priority)
-    console.log(task)
     
     //IMPORTANT
     return task
@@ -51,6 +48,8 @@ function updateTask(task){
     const isComplete = () => task.completed = true
     const isIncomplete = () => task.completed = false
     const changePriority = (newPriority) => task.priority = newPriority
+    
+    //For a diff apporach to priority change
     // const raisePriority = () => task.priority +=1
     // const lowerPriority = () => task.priority -=1
 
@@ -76,7 +75,6 @@ function editTask(task, project){
         taskEdit.changeDueDate(editDate.value)
         taskEdit.changeDescription(editDescription.value)
         taskEdit.changePriority(editPriority.value)
-        console.log(task)
         modal.close()
         saveProjectState(project)
     },{once:true})
@@ -98,7 +96,6 @@ function sortTasks(project){
     const rankedPriority = () => {
         let rankedCopy = [...project.array]
         let rankedArray = rankedCopy.sort((a, b) => b.priority - a.priority)
-        console.log(rankedArray)
         resetContent(content)
         contentLoad(project, rankedArray)
     }
@@ -114,7 +111,7 @@ function sortTasks(project){
             }
             return 0
         })
-        console.log(sortedArray)
+
         contentLoad(project, sortedArray)
     }
 
@@ -133,7 +130,6 @@ function sortTasks(project){
             }
             return 1
         })
-        console.log(sortIncomplete)
         contentLoad(project, sortIncomplete)
     }
     return{rankedPriority, sortedName, sortIncomplete, oldestArray, recentArray}
@@ -142,15 +138,12 @@ function sortTasks(project){
 function markComplete(button, task, project){
     let completionUpdate = updateTask(task)
     button.addEventListener('click', ()=>{
-        //console.log(task)
         if(task.completed === false){
             completionUpdate.isComplete()
-            //console.log(task)
             button.checked = true
             saveProjectState(project)
         }else{
             completionUpdate.isIncomplete()
-            //console.log(task)
             button.checked = false
             saveProjectState(project)
         }

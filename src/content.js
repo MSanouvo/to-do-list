@@ -9,7 +9,6 @@ function contentLoad(project, array){
     //load a given group of tasks
     loadProject(project)
     setActiveProject(project)
-    //console.log(array)
     if(array != undefined){
         generateTaskCard(project, array)
     }
@@ -32,10 +31,8 @@ function loadProject(project){
     const projectButtons = document.createElement('div')
     projectButtons.classList.add('header-buttons')
     const renameTitle = document.createElement('button')
-    // renameTitle.textContent = 'Rename Project'
     const deleteProject = document.createElement('button')
     deleteProject.setAttribute('id', 'delete')
-    // deleteProject.textContent = "Delete Project"
     
     
     content.appendChild(titleDiv)
@@ -57,9 +54,7 @@ function loadProject(project){
 
     //Events for deleting project
     deleteProject.addEventListener('click', ()=>{
-        console.log('buzz')
         switchOn = project.value
-        console.log(switchOn)
         confirmationModal.showModal()
     })
 
@@ -68,7 +63,6 @@ function loadProject(project){
         if(switchOn != null){
             switch(target.id){
                 case 'yes':
-                    console.log('zzz')
                     list.removeProject(project)
                     confirmationModal.close()
                     loadNavList(list)
@@ -139,27 +133,21 @@ function addSortList(parent, project){
     sortDiv.appendChild(sortLable)
     sortDiv.appendChild(sort)
 
-    // figure out sorting features later
-    //for sorting functions
+    //sort functionality
     let sortedProject = sortTasks(project)
-
     sort.addEventListener('click', (e)=>{
         let target = e.target
         switch(target.value){
             case 'Oldest':
-                console.log('fizz')
                 sortedProject.oldestArray()
                 break
             case 'Recent':
-                console.log('buzz')
                 sortedProject.recentArray()
                 break
             case 'Name':
-                console.log('hmm')
                 sortedProject.sortedName()
                 break
             case 'Priority':
-                console.log('hrrr')
                 sortedProject.rankedPriority()
                 break
             case 'Incomplete':
@@ -214,7 +202,6 @@ function openEditForm(button, task, project){
 
     button.addEventListener('click', ()=>{
         editForm.showModal()
-        console.log(task)
         taskName.value = task.name
         taskDate.value = task.dueDate
         taskPrio.value = task.priority
@@ -235,7 +222,6 @@ function openProjectEdit(button, project){
 
     button.addEventListener('click', ()=>{
         editProjectForm.showModal()
-        console.log(project)
         projectName.value = project.name
         editProject(project, editProjectForm)
     })
@@ -263,7 +249,6 @@ function submitTask(){
         //create task, add it to specific project
         let newTask = addTask()
         list.addTasktoProject(selectOption.value, newTask)
-        //console.log(list.getProjects())
         taskForm.reset()
         taskModal.close()
     })
@@ -299,7 +284,6 @@ function createTaskElements(newTask, index, project){
     const taskCard = document.createElement('div')
     taskCard.classList.add('task-card')
     taskCard.setAttribute('data-index-number', index)
-    //console.log(taskCard.dataset.indexNumber)
     const taskInfo = document.createElement('div')
     taskInfo.classList.add('task-info')
     taskInfo.value = 1
@@ -310,7 +294,6 @@ function createTaskElements(newTask, index, project){
     const taskName = document.createElement('span')
     taskName.textContent = newTask.name
     const taskDate = document.createElement('span')
-    //console.log(newTask.dueDate)
     if(newTask.dueDate === ''){
         taskDate.textContent = "---" //For clarity
     }else{
@@ -341,11 +324,9 @@ function createTaskElements(newTask, index, project){
     const buttonDiv = document.createElement('div')
     buttonDiv.classList.add('task-buttons')
     const edit = document.createElement('button')
-    // edit.textContent = "Edit Task"
     edit.classList.add('buttons')
     edit.setAttribute('id', 'edit')
     const remove = document.createElement('button')
-    // remove.textContent = 'Remove Task'
     remove.classList.add('buttons')
     remove.setAttribute('id', 'remove')
 

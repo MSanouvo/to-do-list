@@ -26,7 +26,6 @@ class Project{
         localStorage.setItem(this.name, JSON.stringify(this))
     }
     removeTask(index){
-        console.log(this.array[index])
         this.array.splice(index, 1)
     }
 
@@ -42,14 +41,10 @@ function projectList(){
     let projects = []
     const addProjectToArray = (project) =>{
         projects.push(project)
-        //project.saveProject()
         saveProjectList()
     }
     const getProjects = () => projects
 
-    //for the form to add task to selected project
-    //need to figure out how to implement this factory object onto our other functions/modules
-    //see if we can make this without relying on a factory
     const addTasktoProject = (project_name, task) =>{
         for(let i=0; i<projects.length; i++){
             if(projects[i].name === project_name){
@@ -62,7 +57,6 @@ function projectList(){
     }
 
     const removeProject = (project) =>{
-        console.log(projects.length)
         let filteredArray = []
         for(let i=0; i<projects.length; i++){
             if(projects[i].name != project.name){
@@ -70,7 +64,6 @@ function projectList(){
             }
         }
         projects = filteredArray
-        console.log(filteredArray)
         saveProjectList()
         contentLoad(projects[0], projects[0].array)
     }
@@ -114,7 +107,6 @@ function editProject(project, modal){
             editForm.reportValidity()
             return
         }
-        //console.log(newProjectName.value)
         let name = newProjectName.value
         if(name === 'General'){
             alert('Name already in use. Please use another name.')

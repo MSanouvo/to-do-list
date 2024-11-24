@@ -12,9 +12,6 @@ function addGroupToList(project, index){
         newGroup.setAttribute('id', 'inactive')
     }
 
-    // console.log(project.value)
-    // console.log(project)
-
     const taskGroup = document.querySelector('#task_group')
     const groupOption = document.createElement('option')
     groupOption.value = project.name
@@ -38,7 +35,6 @@ function loadNavList(list){
 
 
     groupList.addEventListener('click', (e)=>{
-        //console.log(e.target.textContent)
         let target = e.target.textContent
         const listArray = list.getProjects()
         for(let i=0; i<listArray.length; i++){
