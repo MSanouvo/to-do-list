@@ -1,6 +1,5 @@
 import "./style.css"
-import { Task, updateTask, sortTasks } from "./todos"
-import { Project, projectList } from "./project"
+import { projectList } from "./project"
 import { loadNavList } from "./navbar-list"
 import { contentLoad, submitTask, submitProject } from "./content.js"
 import { initializeList} from "./storage.js"

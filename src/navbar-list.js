@@ -1,11 +1,17 @@
 //Module for nav bar elements
-import { contentLoad, submitProject, submitTask, resetContent } from "./content"
+import { contentLoad, resetContent } from "./content"
 function addGroupToList(project, index){
     const groupList = document.querySelector('#group-list')
     const newGroup = document.createElement('li')
     newGroup.textContent = project.name
     newGroup.classList.add('group')
     project.setValue(index)
+    if(project.name === 'General'){
+        newGroup.setAttribute('id', 'active')
+    } else{
+        newGroup.setAttribute('id', 'inactive')
+    }
+
     // console.log(project.value)
     // console.log(project)
 

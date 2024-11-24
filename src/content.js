@@ -1,6 +1,6 @@
-import { Task, updateTask, sortTasks } from "./todos";
+import { addTask, sortTasks, editTask, markComplete, removeTask } from "./todos";
 import { list } from ".";
-import { Project } from "./project";
+import { createProject, setActiveProject, editProject } from "./project";
 import { loadNavList } from "./navbar-list";
 
 //Module for loading and creating new content
@@ -8,6 +8,7 @@ import { loadNavList } from "./navbar-list";
 function contentLoad(project, array){
     //load a given group of tasks
     loadProject(project)
+    setActiveProject(project)
     //console.log(array)
     if(array != undefined){
         generateTaskCard(project, array)
@@ -20,7 +21,6 @@ function contentLoad(project, array){
 function loadProject(project){
     //Adds Header of Project, and functions associated to this
     //specific project (rename, delete, sort, etc.)
-
     const content = document.querySelector('#content')
     resetContent(content)//reset DOM before adding elements
     const titleDiv = document.createElement('div')
@@ -89,7 +89,6 @@ function generateTaskCard(project, array){
         createTaskElements(array[i], i, project)
     }
 }
-
 
 function addSortList(parent, project){
     const sortDiv = document.createElement('div')
@@ -247,53 +246,6 @@ function openProjectEdit(button, project){
     })
 }
 
-function editProject(project, modal){
-    const submitBtn = document.querySelector('#edit_submit_project')
-    const newProjectName = document.querySelector('#edit_project_name')
-    const editForm = document.querySelector('#edit-project-input')
-
-    submitBtn.addEventListener('click', ()=>{
-        if(!editForm.checkValidity()){
-            editForm.reportValidity()
-            return
-        }
-        //console.log(newProjectName.value)
-        let name = newProjectName.value
-        if(name === 'General'){
-            alert('Name already in use. Please use another name.')
-        } else{
-            project.renameProject(name)
-            saveProjectState(project)
-        }  
-        modal.close()
-    },{once:true})
-}
-
-function editTask(task, project){
-    const editName = document.querySelector('#edit_name')
-    const editDate = document.querySelector('#edit_date')
-    const editDescription = document.querySelector('#edit_description')
-    const editPriority = document.querySelector('#edit_priority')
-    const modal = document.querySelector('#edit-task-form')
-    const submit = document.querySelector('#submit-edit')
-    const editForm = document.querySelector('#edit-task-input')
-
-    submit.addEventListener('click', ()=>{
-        if(!editForm.checkValidity()){
-            editForm.reportValidity()
-            return
-        }
-        let taskEdit = updateTask(task)
-        taskEdit.changeName(editName.value)
-        taskEdit.changeDueDate(editDate.value)
-        taskEdit.changeDescription(editDescription.value)
-        taskEdit.changePriority(editPriority.value)
-        console.log(task)
-        modal.close()
-        saveProjectState(project)
-    },{once:true})
-}
-
 //creates DOM content using form input
 //need to also add tasks to their selected groups
 function submitTask(){
@@ -440,82 +392,12 @@ function createTaskElements(newTask, index, project){
             }
         }
     })
-
-    
-    //code for displaying/removing description 
-    //(may be useful for a description dropdown feature)
-    // taskInfo.addEventListener('click', (e)=>{
-    //     console.log(e.target)
-    //     if(e.target.value === 1){
-    //         taskCard.removeChild(descriptionBox)
-    //         e.target.value = 0
-    //     } else{
-    //         taskCard.appendChild(descriptionBox)
-    //         e.target.value = 1
-    //     }
-    // })
-}
-
-function removeTask(index, project){
-    project.removeTask(index)
-    saveProjectState(project)
-}
-
-function markComplete(button, task, project){
-    let completionUpdate = updateTask(task)
-    button.addEventListener('click', ()=>{
-        //console.log(task)
-        if(task.completed === false){
-            completionUpdate.isComplete()
-            //console.log(task)
-            button.checked = true
-            saveProjectState(project)
-        }else{
-            completionUpdate.isIncomplete()
-            //console.log(task)
-            button.checked = false
-            saveProjectState(project)
-        }
-    })
-}
-
-//creates task from form inputs
-function addTask(){
-    //form elements
-    const taskName = document.querySelector('#task_name')
-    const dueDate = document.querySelector('#due_date')
-    const taskDescription = document.querySelector('#task_description')
-    const taskPriority = document.querySelector('#task_priority')
-
-    //create task
-    let name = taskName.value
-    let date = dueDate.value
-    let description = taskDescription.value
-    let priority = taskPriority.value
-    const task = new Task(name, date, description, priority)
-    console.log(task)
-    
-    //IMPORTANT
-    return task
-}
-
-function createProject(){
-    const projectName = document.querySelector('#project_name')
-
-    let name = projectName.value
-    if(name === 'General'){
-        alert('Name already in use. Please use another name.')
-    } else{
-        const project = new Project(name)
-        list.addProjectToArray(project)
-    }  
-    //console.log(list.getProjects())
 }
 
 function saveProjectState(project){
     list.saveProjectList()
-    contentLoad(project, project.array)
     loadNavList(list)
+    contentLoad(project, project.array) 
 }
 
 function removeItemMessage(item){
@@ -524,4 +406,6 @@ function removeItemMessage(item){
 }
 
 
-export {contentLoad, loadProject, submitTask, submitProject, resetContent, generateTaskCard}
+
+export {contentLoad, loadProject, submitTask, submitProject, 
+    resetContent, generateTaskCard, saveProjectState}

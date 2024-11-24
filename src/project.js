@@ -1,4 +1,5 @@
-import { contentLoad, loadProject } from "./content"
+import { contentLoad, saveProjectState } from "./content"
+import { list } from "."
 
 //this module should house any function related to projects(groups of tasks)
 
@@ -79,4 +80,50 @@ function projectList(){
     return {showProjects, addProjectToArray, addTasktoProject, getProjects, saveProjectList, removeProject}
 }
 
-export{Project, projectList}
+function createProject(){
+    const projectName = document.querySelector('#project_name')
+
+    let name = projectName.value
+    if(name === 'General'){
+        alert('Name already in use. Please use another name.')
+    } else{
+        const project = new Project(name)
+        list.addProjectToArray(project)
+    }  
+}
+
+function setActiveProject(project){
+    const listElement = document.getElementsByClassName('group')
+    for(let l=0; l<listElement.length; l++){
+        if(listElement[l].textContent === project.name){
+            console.log('foo')
+            listElement[l].setAttribute('id', 'active')
+        } else{
+            listElement[l].setAttribute('id', 'inactive')
+        }
+    }
+}
+
+function editProject(project, modal){
+    const submitBtn = document.querySelector('#edit_submit_project')
+    const newProjectName = document.querySelector('#edit_project_name')
+    const editForm = document.querySelector('#edit-project-input')
+
+    submitBtn.addEventListener('click', ()=>{
+        if(!editForm.checkValidity()){
+            editForm.reportValidity()
+            return
+        }
+        //console.log(newProjectName.value)
+        let name = newProjectName.value
+        if(name === 'General'){
+            alert('Name already in use. Please use another name.')
+        } else{
+            project.renameProject(name)
+            saveProjectState(project)
+        }  
+        modal.close()
+    },{once:true})
+}
+
+export{Project, projectList, setActiveProject, createProject, editProject}
