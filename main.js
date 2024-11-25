@@ -184,9 +184,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /*!******************************!*\
   !*** ./src/icons/delete.svg ***!
   \******************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+/***/ ((module) => {
 
-module.exports = __webpack_require__.p + "icons/delete.svg";
+module.exports = "/icons/icons/delete.svg";
 
 /***/ }),
 
@@ -194,9 +194,9 @@ module.exports = __webpack_require__.p + "icons/delete.svg";
 /*!****************************!*\
   !*** ./src/icons/edit.svg ***!
   \****************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+/***/ ((module) => {
 
-module.exports = __webpack_require__.p + "icons/edit.svg";
+module.exports = "/icons/icons/edit.svg";
 
 /***/ })
 
@@ -268,11 +268,6 @@ module.exports = __webpack_require__.p + "icons/edit.svg";
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/publicPath */
-/******/ 	(() => {
-/******/ 		__webpack_require__.p = "/icons/";
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/jsonp chunk loading */
