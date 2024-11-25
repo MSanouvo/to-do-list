@@ -186,7 +186,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \******************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-module.exports = __webpack_require__.p + "symbols/delete.svg";
+module.exports = __webpack_require__.p + "icons/delete.svg";
 
 /***/ }),
 
@@ -196,7 +196,7 @@ module.exports = __webpack_require__.p + "symbols/delete.svg";
   \****************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-module.exports = __webpack_require__.p + "symbols/edit.svg";
+module.exports = __webpack_require__.p + "icons/edit.svg";
 
 /***/ })
 
