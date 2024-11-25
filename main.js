@@ -186,7 +186,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \******************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-module.exports = __webpack_require__.p + "a1770d4007bda9f3d12e.svg";
+module.exports = __webpack_require__.p + "symbols/delete.svg";
 
 /***/ }),
 
@@ -196,7 +196,7 @@ module.exports = __webpack_require__.p + "a1770d4007bda9f3d12e.svg";
   \****************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-module.exports = __webpack_require__.p + "9d9530a56c3ab0526ca6.svg";
+module.exports = __webpack_require__.p + "symbols/edit.svg";
 
 /***/ })
 
